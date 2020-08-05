@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A335EE8424DACEB200D9B948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EE8324DACEB200D9B948 /* AppDelegate.swift */; };
-		A335EE8624DACEB200D9B948 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EE8524DACEB200D9B948 /* SceneDelegate.swift */; };
-		A335EE8824DACEB200D9B948 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EE8724DACEB200D9B948 /* ViewController.swift */; };
-		A335EE8B24DACEB200D9B948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A335EE8924DACEB200D9B948 /* Main.storyboard */; };
 		A335EE8D24DACEB500D9B948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A335EE8C24DACEB500D9B948 /* Assets.xcassets */; };
 		A335EE9024DACEB500D9B948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A335EE8E24DACEB500D9B948 /* LaunchScreen.storyboard */; };
 		A335EE9B24DACEB500D9B948 /* CityRanksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EE9A24DACEB500D9B948 /* CityRanksTests.swift */; };
+		A335EEA624DAD06900D9B948 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EEA524DAD06900D9B948 /* main.swift */; };
+		A335EEA824DAD0A000D9B948 /* FakeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EEA724DAD0A000D9B948 /* FakeAppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,15 +28,14 @@
 /* Begin PBXFileReference section */
 		A335EE8024DACEB200D9B948 /* CityRanks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityRanks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A335EE8324DACEB200D9B948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A335EE8524DACEB200D9B948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A335EE8724DACEB200D9B948 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A335EE8A24DACEB200D9B948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A335EE8C24DACEB500D9B948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A335EE8F24DACEB500D9B948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A335EE9124DACEB500D9B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A335EE9624DACEB500D9B948 /* CityRanksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityRanksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A335EE9A24DACEB500D9B948 /* CityRanksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRanksTests.swift; sourceTree = "<group>"; };
 		A335EE9C24DACEB500D9B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A335EEA524DAD06900D9B948 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A335EEA724DAD0A000D9B948 /* FakeAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +77,9 @@
 		A335EE8224DACEB200D9B948 /* CityRanks */ = {
 			isa = PBXGroup;
 			children = (
-				A335EE8324DACEB200D9B948 /* AppDelegate.swift */,
-				A335EE8524DACEB200D9B948 /* SceneDelegate.swift */,
-				A335EE8724DACEB200D9B948 /* ViewController.swift */,
-				A335EE8924DACEB200D9B948 /* Main.storyboard */,
-				A335EE8C24DACEB500D9B948 /* Assets.xcassets */,
-				A335EE8E24DACEB500D9B948 /* LaunchScreen.storyboard */,
-				A335EE9124DACEB500D9B948 /* Info.plist */,
+				A335EEAA24DB2E4000D9B948 /* Config */,
+				A335EEAB24DB2E4E00D9B948 /* Scenes */,
+				A335EEA924DB2E2E00D9B948 /* Shared */,
 			);
 			path = CityRanks;
 			sourceTree = "<group>";
@@ -97,6 +91,41 @@
 				A335EE9C24DACEB500D9B948 /* Info.plist */,
 			);
 			path = CityRanksTests;
+			sourceTree = "<group>";
+		};
+		A335EEA924DB2E2E00D9B948 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A335EEAC24DB2E6500D9B948 /* Resources */,
+				A335EE8324DACEB200D9B948 /* AppDelegate.swift */,
+				A335EEA724DAD0A000D9B948 /* FakeAppDelegate.swift */,
+				A335EEA524DAD06900D9B948 /* main.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A335EEAA24DB2E4000D9B948 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A335EE9124DACEB500D9B948 /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		A335EEAB24DB2E4E00D9B948 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A335EEAC24DB2E6500D9B948 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A335EE8C24DACEB500D9B948 /* Assets.xcassets */,
+				A335EE8E24DACEB500D9B948 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +211,6 @@
 			files = (
 				A335EE9024DACEB500D9B948 /* LaunchScreen.storyboard in Resources */,
 				A335EE8D24DACEB500D9B948 /* Assets.xcassets in Resources */,
-				A335EE8B24DACEB200D9B948 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A335EE8824DACEB200D9B948 /* ViewController.swift in Sources */,
 				A335EE8424DACEB200D9B948 /* AppDelegate.swift in Sources */,
-				A335EE8624DACEB200D9B948 /* SceneDelegate.swift in Sources */,
+				A335EEA824DAD0A000D9B948 /* FakeAppDelegate.swift in Sources */,
+				A335EEA624DAD06900D9B948 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +253,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A335EE8924DACEB200D9B948 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A335EE8A24DACEB200D9B948 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A335EE8E24DACEB500D9B948 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -348,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -363,15 +383,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CityRanks/Info.plist;
+				INFOPLIST_FILE = CityRanks/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyzkov.CityRanks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -380,15 +401,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CityRanks/Info.plist;
+				INFOPLIST_FILE = CityRanks/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyzkov.CityRanks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
