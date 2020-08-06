@@ -1,0 +1,17 @@
+name: XCode Test
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run tests
+      run: /Applications/Xcode_11.5.app/Contents/Developer/usr/bin/xcodebuild test -scheme CurriculumVitae -sdk iphonesimulator12.4 -destination "platform=iOS Simulator,name=iPhone 11,OS=12.4"
