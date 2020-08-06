@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run tests
-      run: /Applications/Xcode_11.5.app/Contents/Developer/usr/bin/xcodebuild test -scheme CurriculumVitae -sdk iphonesimulator12.4 -destination "platform=iOS Simulator,name=iPhone 11,OS=12.4"
+      run: /Applications/Xcode_11.5.app/Contents/Developer/usr/bin/xcodebuild test -scheme CityRanks -sdk iphonesimulator12.4 -destination "platform=iOS Simulator,name=iPhone 11,OS=12.4"
