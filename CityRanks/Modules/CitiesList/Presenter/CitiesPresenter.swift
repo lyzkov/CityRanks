@@ -8,14 +8,23 @@
 
 import Foundation
 
-protocol CitiesPresenterInputProtocol {
+protocol Renderable {
+    
+}
+
+protocol CitiesViewDataSource {
+    func city(for indexPath: IndexPath) -> CityRenderable
+    var numberOfRows: Int { get }
+}
+
+protocol CitiesPresenterInputProtocol: CitiesViewDataSource {
     func loadCities()
-    func loadCityImage(from url: URL, forRowAt indexPath: IndexPath)
+    func loadCityImage(forRowAt indexPath: IndexPath)
 }
 
 protocol CitiesPresenterOutputProtocol: class {
     func present(cities: [City])
-    func present(cityImage: Data, forRowAt indexPath: IndexPath)
+    func presentImage(city: City)
     func showAlert(from error: Error)
 }
 
@@ -27,7 +36,7 @@ final class CitiesPresenter {
     
     private let wireframe: WireframeProtocol
     
-    private let cities: [CityRenderable] = []
+    private var cities: [City] = []
     
     init(wireframe: WireframeProtocol, view: CitiesViewProtocol, interactor: CitiesInteractorProtocol) {
         self.view = view
@@ -43,9 +52,18 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
         interactor.fetchCities()
     }
     
-    func loadCityImage(from url: URL, forRowAt indexPath: IndexPath) {
-        interactor.fetchCityImage(from: url, forRowAt: indexPath)
-        view.render(cityImage: .loading, forRowAt: indexPath)
+    func loadCityImage(forRowAt indexPath: IndexPath) {
+        let city = cities[indexPath.item]
+        interactor.fetchCityImage(for: city)
+        view.renderCityImage(forRowAt: indexPath)
+    }
+    
+    func city(for indexPath: IndexPath) -> CityRenderable {
+        return cities[indexPath.item]
+    }
+    
+    var numberOfRows: Int {
+        return cities.count
     }
     
 }
@@ -53,12 +71,14 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
 extension CitiesPresenter: CitiesPresenterOutputProtocol {
     
     func present(cities: [City]) {
-        view.render(cities: cities.map(CityRenderable.init))
+        self.cities = cities
+        view.renderCitiesList()
     }
     
-    func present(cityImage: Data, forRowAt indexPath: IndexPath) {
-        if let image = CityImage(from: cityImage) {
-            view.render(cityImage: image, forRowAt: indexPath)
+    func presentImage(city: City) {
+        if let index = cities.firstIndex(of: city) {
+            cities[index] = city
+            view.renderCityImage(forRowAt: IndexPath(item: index, section: 0))
         }
     }
     

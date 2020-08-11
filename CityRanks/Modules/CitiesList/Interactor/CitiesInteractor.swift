@@ -11,7 +11,7 @@ import Foundation
 protocol CitiesInteractorProtocol {
     var presenter: CitiesPresenterOutputProtocol? { get set }
     func fetchCities()
-    func fetchCityImage(from url: URL, forRowAt indexPath: IndexPath)
+    func fetchCityImage(for city: City)
 }
 
 final class CitiesInteractor: CitiesInteractorProtocol {
@@ -19,30 +19,47 @@ final class CitiesInteractor: CitiesInteractorProtocol {
     weak var presenter: CitiesPresenterOutputProtocol?
     
     private let dataManager: CitiesRepositoryProtocol
+    private let imageFetcher: ImageFetcher
     
-    init(dataManager: CitiesRepositoryProtocol = CitiesRepository()) {
+    private var cities: Set<City> = .init()
+    
+    init(dataManager: CitiesRepositoryProtocol = CitiesRepository(), imageFetcher: ImageFetcher = ImageFetcher()) {
         self.dataManager = dataManager
+        self.imageFetcher = imageFetcher
     }
     
     func fetchCities() {
         dataManager.fetchCities { result in
             switch result {
             case .success(let cities):
-                presenter?.present(cities: cities)
+                self.cities = Set(cities)
+                presenter?.present(cities: Array(self.cities))
             case .failure(let error):
+                self.cities = .init()
                 presenter?.showAlert(from: error)
             }
         }
     }
     
-    func fetchCityImage(from url: URL, forRowAt indexPath: IndexPath) {
-        DispatchQueue.global().async { [weak self] in
-            guard let data = try? Data(contentsOf: url) else {
-                return
-            }
-            DispatchQueue.main.async {
-                self?.presenter?.present(cityImage: data, forRowAt: indexPath)
-            }
+    func fetchCityImage(for city: City) {
+        var city = city
+        guard case let .placeholder(url) = city.imageData else {
+            return
+        }
+        imageFetcher.fetch(from: url) { [weak self] (image: FetchableImage) in
+            city.imageData = image
+            self?.cities.update(with: city)
+            self?.presenter?.presentImage(city: city)
+        }
+    }
+    
+}
+
+extension Set where Element == City {
+    
+    func sortedByName() -> [City] {
+        return sorted { lhs, rhs in
+            lhs.name < rhs.name
         }
     }
     
