@@ -17,6 +17,7 @@ protocol CitiesPresenterInputProtocol: CitiesViewDataSource {
     func loadCities()
     func loadCityImage(forRowAt indexPath: IndexPath)
     func filterCities(favorites: Bool)
+    func toggleFavorite(forRowAt indexPath: IndexPath)
 }
 
 protocol CitiesPresenterOutputProtocol: class {
@@ -62,6 +63,12 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
         interactor.fetchCities()
     }
     
+    func toggleFavorite(forRowAt indexPath: IndexPath) {
+        var city = cities[indexPath.item]
+        city.favorite = city.favorite ? false : true
+        interactor.updateCity(city: city)
+    }
+    
     func city(for indexPath: IndexPath) -> CityRenderable {
         return cities[indexPath.item]
     }
@@ -77,6 +84,8 @@ extension CitiesPresenter: CitiesPresenterOutputProtocol {
     func present(cities: [City]) {
         self.cities = cities.filter { city in
             favoritesOnly ? city.favorite : true
+        }.sorted { lhs, rhs in
+            lhs.name < rhs.name
         }
         view.renderCitiesList()
     }

@@ -13,6 +13,7 @@ protocol CitiesInteractorProtocol {
     func fetchCities()
     func fetchCities(refresh: Bool)
     func fetchCityImage(for city: City)
+    func updateCity(city: City)
 }
 
 final class CitiesInteractor: CitiesInteractorProtocol {
@@ -62,6 +63,11 @@ final class CitiesInteractor: CitiesInteractorProtocol {
             self?.cities.update(with: city)
             self?.presenter?.presentImage(city: city)
         }
+    }
+    
+    func updateCity(city: City) {
+        cities.update(with: city)
+        presenter?.present(cities: Array(cities))
     }
     
 }

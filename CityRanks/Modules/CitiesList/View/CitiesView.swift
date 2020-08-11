@@ -20,6 +20,12 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
     
     var presenter: CitiesPresenterInputProtocol!
     
+    // MARK: - Subviews
+    
+    var favoriteIcon: UIImageView {
+        UIImageView(image: "💛".image())
+    }
+    
     // MARK: - Properties
     
     // MARK: - Life cycle
@@ -74,9 +80,11 @@ extension CitiesView {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let city = presenter.city(for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
-        cell.textLabel?.text = presenter.city(for: indexPath).name
-        cell.imageView?.image = presenter.city(for: indexPath).image ?? .placeholder
+        cell.textLabel?.text = city.name
+        cell.imageView?.image = city.image ?? .placeholder
+        cell.accessoryView = city.favorite ? favoriteIcon : nil
         
         return cell
     }
@@ -85,6 +93,15 @@ extension CitiesView {
         if presenter.city(for: indexPath).image == nil {
             presenter.loadCityImage(forRowAt: indexPath)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [
+            .init(style: .normal, title: "Favorite", handler: { action, view, success in
+                self.presenter.toggleFavorite(forRowAt: indexPath)
+                success(true)
+            })
+        ])
     }
     
 }
@@ -104,6 +121,7 @@ extension CitiesView: UITableViewDataSourcePrefetching {
 protocol CityRenderable {
     var name: String { get }
     var image: UIImage? { get }
+    var favorite: Bool { get }
 }
 
 extension City: CityRenderable {
@@ -142,5 +160,25 @@ extension UIImage {
         
         return placeholderRectangle.asImage()
     }()
+    
+}
+
+extension String {
+    
+    func image(fontSize: CGFloat = 15, bgColor: UIColor = UIColor.clear, imageSize: CGSize? = nil) -> UIImage? {
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let attributes = [NSAttributedString.Key.font: font]
+        let imageSize = imageSize ?? self.size(withAttributes: attributes)
+
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)
+        bgColor.set()
+        let rect = CGRect(origin: .zero, size: imageSize)
+        UIRectFill(rect)
+        self.draw(in: rect, withAttributes: [.font: font])
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
     
 }
