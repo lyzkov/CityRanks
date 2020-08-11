@@ -19,11 +19,11 @@ final class CitiesInteractor: CitiesInteractorProtocol {
     weak var presenter: CitiesPresenterOutputProtocol?
     
     private let dataManager: CitiesRepositoryProtocol
-    private let imageFetcher: ImageFetcher
+    private let imageFetcher: ImageFetcherProtocol
     
     private var cities: Set<City> = .init()
     
-    init(dataManager: CitiesRepositoryProtocol = CitiesRepository(), imageFetcher: ImageFetcher = ImageFetcher()) {
+    init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher()) {
         self.dataManager = dataManager
         self.imageFetcher = imageFetcher
     }

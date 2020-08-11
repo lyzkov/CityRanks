@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol Renderable {
-    
-}
-
 protocol CitiesViewDataSource {
     func city(for indexPath: IndexPath) -> CityRenderable
     var numberOfRows: Int { get }

@@ -61,7 +61,7 @@ extension CitiesView {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
         cell.textLabel?.text = presenter.city(for: indexPath).name
-        cell.imageView?.image = presenter.city(for: indexPath).image ?? .placeholder()
+        cell.imageView?.image = presenter.city(for: indexPath).image ?? .placeholder
         
         return cell
     }
@@ -86,7 +86,7 @@ extension CitiesView: UITableViewDataSourcePrefetching {
     
 }
 
-protocol CityRenderable: Renderable {
+protocol CityRenderable {
     var name: String { get }
     var image: UIImage? { get }
 }
@@ -94,7 +94,14 @@ protocol CityRenderable: Renderable {
 extension City: CityRenderable {
     
     var image: UIImage? {
-        return imageData.data.flatMap(UIImage.init)
+        switch imageData {
+        case .loaded(let data):
+            return UIImage(data: data) ?? .placeholder
+        case .loadingPlaceholder, .failure:
+            return .placeholder
+        default:
+            return nil
+        }
     }
     
 }
@@ -114,11 +121,11 @@ extension UIView {
 
 extension UIImage {
     
-    static func placeholder() -> UIImage {
+    static var placeholder: UIImage = {
         let placeholderRectangle = UIView(frame: .init(x: 0, y: 0, width: 20, height: 20))
         placeholderRectangle.backgroundColor = .gray
         
         return placeholderRectangle.asImage()
-    }
+    }()
     
 }

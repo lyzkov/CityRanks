@@ -1,5 +1,5 @@
 //
-//  CitiesRepository.swift
+//  FakeCitiesRepository.swift
 //  CityRanks
 //
 //  Created by lyzkov on 10/08/2020.

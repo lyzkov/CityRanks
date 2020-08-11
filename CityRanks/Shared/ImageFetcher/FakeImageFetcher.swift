@@ -1,19 +1,23 @@
 //
-//  ImageFetcher.swift
+//  FakeImageFetcher.swift
 //  CityRanks
 //
-//  Created by lyzkov on 10/08/2020.
+//  Created by lyzkov on 11/08/2020.
 //  Copyright © 2020 lyzkov. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
-protocol ImageFetcherProtocol {
-    func fetch(from url: URL, completion handler: @escaping (FetchableImage) -> Void)
-    func fetch(from url: URL, completion handler: @escaping (Result<Data, Error>) -> Void)
-}
+private let cityImages = [UIImage(named: "cracow")!, UIImage(named: "wroclaw")!, UIImage(named: "warsaw")!]
 
-final class ImageFetcher: ImageFetcherProtocol {
+final class FakeImageFetcher: ImageFetcherProtocol {
+    
+    var imageData: [UIImage]
+    
+    init(imageData: [UIImage] = cityImages) {
+        self.imageData = imageData
+    }
     
     func fetch(from url: URL, completion handler: @escaping (FetchableImage) -> Void) {
         handler(.loadingPlaceholder)
@@ -28,16 +32,15 @@ final class ImageFetcher: ImageFetcherProtocol {
     }
     
     func fetch(from url: URL, completion handler: @escaping (Result<Data, Error>) -> Void) {
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf: url)
+        DispatchQueue.global().async { [weak self] in
+            guard let data = self?.imageData.popLast()?.jpegData(compressionQuality: 0.89) else {
                 DispatchQueue.main.async {
-                    handler(.success(data))
+                    handler(.failure(NSError()))
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    handler(.failure(error))
-                }
+                return
+            }
+            DispatchQueue.main.async {
+                handler(.success(data))
             }
         }
     }
