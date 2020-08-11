@@ -27,11 +27,26 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Navigation Bar setup
+        title = "Cities Rank"
+        
+        let favoritesLabel = UILabel()
+        favoritesLabel.text = "Fav"
+        let favoritesSwitch = UISwitch()
+        favoritesSwitch.addTarget(self, action: #selector(favoriteDidChange), for: .valueChanged)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: favoritesSwitch), UIBarButtonItem(customView: favoritesLabel)]
+        
+        // Table View setup
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cityCell")
         
         tableView.prefetchDataSource = self
         
+        // Data feed
         presenter?.loadCities()
+    }
+    
+    @objc func favoriteDidChange(sender: UISwitch!) {
+        presenter.filterCities(favorites: sender.isOn)
     }
     
     // MARK: - Protocol implementations

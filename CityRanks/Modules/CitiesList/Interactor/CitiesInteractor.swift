@@ -11,6 +11,7 @@ import Foundation
 protocol CitiesInteractorProtocol {
     var presenter: CitiesPresenterOutputProtocol? { get set }
     func fetchCities()
+    func fetchCities(refresh: Bool)
     func fetchCityImage(for city: City)
 }
 
@@ -29,6 +30,16 @@ final class CitiesInteractor: CitiesInteractorProtocol {
     }
     
     func fetchCities() {
+        fetchCities(refresh: false)
+    }
+    
+    func fetchCities(refresh: Bool) {
+        guard cities.isEmpty || refresh else {
+            presenter?.present(cities: Array(cities))
+            
+            return
+        }
+        
         dataManager.fetchCities { result in
             switch result {
             case .success(let cities):

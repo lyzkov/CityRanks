@@ -16,6 +16,7 @@ protocol CitiesViewDataSource {
 protocol CitiesPresenterInputProtocol: CitiesViewDataSource {
     func loadCities()
     func loadCityImage(forRowAt indexPath: IndexPath)
+    func filterCities(favorites: Bool)
 }
 
 protocol CitiesPresenterOutputProtocol: class {
@@ -33,6 +34,8 @@ final class CitiesPresenter {
     private let wireframe: WireframeProtocol
     
     private var cities: [City] = []
+    
+    private var favoritesOnly: Bool = false
     
     init(wireframe: WireframeProtocol, view: CitiesViewProtocol, interactor: CitiesInteractorProtocol) {
         self.view = view
@@ -54,6 +57,11 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
         view.renderCityImage(forRowAt: indexPath)
     }
     
+    func filterCities(favorites: Bool) {
+        favoritesOnly = favorites
+        interactor.fetchCities()
+    }
+    
     func city(for indexPath: IndexPath) -> CityRenderable {
         return cities[indexPath.item]
     }
@@ -67,7 +75,9 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
 extension CitiesPresenter: CitiesPresenterOutputProtocol {
     
     func present(cities: [City]) {
-        self.cities = cities
+        self.cities = cities.filter { city in
+            favoritesOnly ? city.favorite : true
+        }
         view.renderCitiesList()
     }
     
