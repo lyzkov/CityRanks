@@ -11,10 +11,42 @@ import Foundation
 
 final class CitiesPresenterSpy: CitiesPresenterInputProtocol, CitiesPresenterOutputProtocol {
     
-    var didLoad = false
+    var didLoadCities = false
     
-    func load() {
-        didLoad = true
+    func loadCities() {
+        didLoadCities = true
+    }
+    
+    var didLoadCityImage = false
+    var didLoadCityImageIndexPath: IndexPath? = nil
+    
+    func loadCityImage(forRowAt indexPath: IndexPath) {
+        didLoadCityImage = true
+        didLoadCityImageIndexPath = indexPath
+    }
+    
+    var didFilterCities = false
+    var didFIlterCitiesFavorites: Bool? = nil
+    
+    func filterCities(favorites: Bool) {
+        didFilterCities = true
+        didFIlterCitiesFavorites = favorites
+    }
+    
+    func toggleFavorite(forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func presentImage(city: City) {
+        
+    }
+    
+    func city(for indexPath: IndexPath) -> CityRenderable {
+        return citiesToPresent[indexPath.row]
+    }
+    
+    var numberOfRows: Int {
+        return citiesToPresent.count
     }
     
     var citiesToPresent: [City] = []

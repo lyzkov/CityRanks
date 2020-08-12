@@ -37,7 +37,6 @@
 		A37AA35124E157740028D46A /* CitiesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35024E157740028D46A /* CitiesInteractorTests.swift */; };
 		A37AA35324E158850028D46A /* CitiesPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */; };
 		A37AA35524E15B860028D46A /* FakeCitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */; };
-		A37AA35724E15F2C0028D46A /* CitiesRepositoryFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35624E15F2C0028D46A /* CitiesRepositoryFake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		A37AA35024E157740028D46A /* CitiesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesInteractorTests.swift; sourceTree = "<group>"; };
 		A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPresenterSpy.swift; sourceTree = "<group>"; };
 		A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCitiesRepository.swift; sourceTree = "<group>"; };
-		A37AA35624E15F2C0028D46A /* CitiesRepositoryFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesRepositoryFake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +265,6 @@
 		A335EEC624DCBDA700D9B948 /* CitiesList */ = {
 			isa = PBXGroup;
 			children = (
-				A37AA35824E160D70028D46A /* Fake */,
 				A335EECA24DCBEA900D9B948 /* Spy */,
 				A37AA34F24E1575A0028D46A /* Interactor */,
 				A335EEC724DCBDDC00D9B948 /* Presenter */,
@@ -337,14 +334,6 @@
 				A37AA35024E157740028D46A /* CitiesInteractorTests.swift */,
 			);
 			path = Interactor;
-			sourceTree = "<group>";
-		};
-		A37AA35824E160D70028D46A /* Fake */ = {
-			isa = PBXGroup;
-			children = (
-				A37AA35624E15F2C0028D46A /* CitiesRepositoryFake.swift */,
-			);
-			path = Fake;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,7 +471,6 @@
 				A37AA35324E158850028D46A /* CitiesPresenterSpy.swift in Sources */,
 				A335EEC924DCBE1F00D9B948 /* CitiesPresenterTests.swift in Sources */,
 				A335EECC24DCBEC300D9B948 /* CitiesViewSpy.swift in Sources */,
-				A37AA35724E15F2C0028D46A /* CitiesRepositoryFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

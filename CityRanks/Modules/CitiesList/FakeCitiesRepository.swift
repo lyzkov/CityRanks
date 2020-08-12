@@ -15,8 +15,16 @@ protocol CitiesRepositoryProtocol {
 /// TODO: Replace with actual implementation that fetches cities from API
 final class FakeCitiesRepository: CitiesRepositoryProtocol {
     
+    var cities: [City] = .polish
+    
+    var error: Error? = nil
+    
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {
-        handler(.success(.polish))
+        if let error = error {
+            handler(.failure(error))
+        } else {
+            handler(.success(cities))
+        }
     }
     
 }

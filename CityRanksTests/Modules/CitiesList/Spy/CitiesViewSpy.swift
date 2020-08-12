@@ -10,14 +10,21 @@ import Foundation
 @testable import CityRanks
 
 final class CitiesViewSpy: CitiesViewProtocol {
-
-    var presenter: CitiesPresenterInputProtocol?
     
-    var didRenderCities: [City]?
+    var presenter: CitiesPresenterInputProtocol!
     
+    var didRenderCitiesList = false
     
-    func render(cities: [City]) {
-        didRenderCities = cities
+    func renderCitiesList() {
+        didRenderCitiesList = true
     }
+    
+    var didRenderCityImageIndexPath: IndexPath? = nil
+    
+    func renderCityImage(forRowAt indexPath: IndexPath) {
+        didRenderCityImageIndexPath = indexPath
+    }
+    
+
 
 }

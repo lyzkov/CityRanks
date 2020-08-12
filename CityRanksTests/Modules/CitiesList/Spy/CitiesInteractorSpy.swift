@@ -13,10 +13,28 @@ final class CitiesInteractorSpy: CitiesInteractorProtocol {
     
     var presenter: CitiesPresenterOutputProtocol?
     
-    var didFetch = false
+    var didFetchCities = false
+    var citiesToPresent: [City] = []
+    
+    func fetchCities(refresh: Bool = false) {
+        didFetchCities = true
+        presenter?.present(cities: citiesToPresent)
+    }
     
     func fetchCities() {
-        didFetch = true
+        self.fetchCities(refresh: false)
+    }
+    
+    var didFetchImage = false
+    
+    func fetchImage(for city: City) {
+        didFetchImage = true
+    }
+    
+    var didUpdateCity: City? = nil
+    
+    func update(city: City) {
+        didUpdateCity = city
     }
 
 }
