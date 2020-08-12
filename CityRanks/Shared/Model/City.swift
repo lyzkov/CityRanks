@@ -8,36 +8,68 @@
 
 import Foundation
 
-struct City {
-    let name: String
-    var favorite: Bool
-    var imageData: FetchableImage
+struct City: Codable, Identifiable {
+    let id: ID
+    var name: String! = nil
+    var favorite: Bool = false
+    var imageData: FetchableImage! = nil
+}
+
+extension City: Storable {
+    
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case id
+        case favorite
+    }
+    
+    mutating func update(with restored: Self) throws {
+        favorite = restored.favorite
+    }
+    
 }
 
 extension City: Equatable {
     static func == (lhs: City, rhs: City) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
 }
 
 extension City: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
+        hasher.combine(id)
     }
+}
+
+extension City: Comparable {
+    
+    static func < (lhs: City, rhs: City) -> Bool {
+        return lhs.id.rawValue < rhs.id.rawValue
+    }
+    
 }
 
 extension City {
     
-    static let warsaw = City(name: "Warszawa", favorite: false, imageData: .placeholder(url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/POL_Warszawa_COA.svg/286px-POL_Warszawa_COA.svg.png"))
+    init(name: String, imageUrl: URL) {
+        self.id = Identifier(rawValue: name)
+        self.name = name
+        self.imageData = .placeholder(url: imageUrl)
+    }
     
-    static let wroclaw = City(name: "Wrocław", favorite: true, imageData: .placeholder(url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Herb_wroclaw.svg/404px-Herb_wroclaw.svg.png"))
+    static let warsaw = City(name: "Warszawa", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/POL_Warszawa_COA.svg/286px-POL_Warszawa_COA.svg.png")
     
-    static let cracow = City(name: "Kraków", favorite: false, imageData: .placeholder(url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/POL_Krak%C3%B3w_COA.svg/1200px-POL_Krak%C3%B3w_COA.svg.png"))
+    static let wroclaw = City(name: "Wrocław", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Herb_wroclaw.svg/404px-Herb_wroclaw.svg.png")
+    
+    static let cracow = City(name: "Kraków", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/POL_Krak%C3%B3w_COA.svg/1200px-POL_Krak%C3%B3w_COA.svg.png")
     
 }
 
 extension Array where Element == City {
     
-    static let polish = [City.wroclaw, City.warsaw, City.cracow]
+    static let polish = [
+        City.wroclaw,
+        City.warsaw,
+        City.cracow,
+    ]
     
 }

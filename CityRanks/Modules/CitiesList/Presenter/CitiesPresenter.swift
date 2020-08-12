@@ -46,28 +46,7 @@ final class CitiesPresenter {
     
 }
 
-extension CitiesPresenter: CitiesPresenterInputProtocol {
-    
-    func loadCities() {
-        interactor.fetchCities()
-    }
-    
-    func loadCityImage(forRowAt indexPath: IndexPath) {
-        let city = cities[indexPath.item]
-        interactor.fetchCityImage(for: city)
-        view.renderCityImage(forRowAt: indexPath)
-    }
-    
-    func filterCities(favorites: Bool) {
-        favoritesOnly = favorites
-        interactor.fetchCities()
-    }
-    
-    func toggleFavorite(forRowAt indexPath: IndexPath) {
-        var city = cities[indexPath.item]
-        city.favorite = city.favorite ? false : true
-        interactor.updateCity(city: city)
-    }
+extension CitiesPresenter: CitiesViewDataSource {
     
     func city(for indexPath: IndexPath) -> CityRenderable {
         return cities[indexPath.item]
@@ -79,14 +58,38 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
     
 }
 
+extension CitiesPresenter: CitiesPresenterInputProtocol {
+    
+    func loadCities() {
+        interactor.fetchCities()
+    }
+    
+    func loadCityImage(forRowAt indexPath: IndexPath) {
+        let city = cities[indexPath.item]
+        interactor.fetchImage(for: city)
+        view.renderCityImage(forRowAt: indexPath)
+    }
+    
+    func filterCities(favorites: Bool) {
+        favoritesOnly = favorites
+        interactor.fetchCities()
+    }
+    
+    func toggleFavorite(forRowAt indexPath: IndexPath) {
+        var city = cities[indexPath.item]
+        city.favorite = city.favorite ? false : true
+        interactor.update(city: city)
+    }
+    
+}
+
 extension CitiesPresenter: CitiesPresenterOutputProtocol {
     
     func present(cities: [City]) {
-        self.cities = cities.filter { city in
-            favoritesOnly ? city.favorite : true
-        }.sorted { lhs, rhs in
-            lhs.name < rhs.name
-        }
+        self.cities = cities
+            .filter { city in
+                favoritesOnly ? city.favorite : true
+            }
         view.renderCitiesList()
     }
     

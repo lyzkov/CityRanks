@@ -107,7 +107,7 @@ extension CitiesView {
 }
 
 extension CitiesView: UITableViewDataSourcePrefetching {
-    
+
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if presenter.city(for: indexPath).image == nil {
@@ -115,70 +115,5 @@ extension CitiesView: UITableViewDataSourcePrefetching {
             }
         }
     }
-    
-}
 
-protocol CityRenderable {
-    var name: String { get }
-    var image: UIImage? { get }
-    var favorite: Bool { get }
-}
-
-extension City: CityRenderable {
-    
-    var image: UIImage? {
-        switch imageData {
-        case .loaded(let data):
-            return UIImage(data: data) ?? .placeholder
-        case .loadingPlaceholder, .failure:
-            return .placeholder
-        default:
-            return nil
-        }
-    }
-    
-}
-
-extension UIView {
-
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-
-        return renderer.image {
-            rendererContext in
-
-            layer.render(in: rendererContext.cgContext)
-        }
-    }
-}
-
-extension UIImage {
-    
-    static var placeholder: UIImage = {
-        let placeholderRectangle = UIView(frame: .init(x: 0, y: 0, width: 20, height: 20))
-        placeholderRectangle.backgroundColor = .gray
-        
-        return placeholderRectangle.asImage()
-    }()
-    
-}
-
-extension String {
-    
-    func image(fontSize: CGFloat = 15, bgColor: UIColor = UIColor.clear, imageSize: CGSize? = nil) -> UIImage? {
-        let font = UIFont.systemFont(ofSize: fontSize)
-        let attributes = [NSAttributedString.Key.font: font]
-        let imageSize = imageSize ?? self.size(withAttributes: attributes)
-
-        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)
-        bgColor.set()
-        let rect = CGRect(origin: .zero, size: imageSize)
-        UIRectFill(rect)
-        self.draw(in: rect, withAttributes: [.font: font])
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
 }

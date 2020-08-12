@@ -12,22 +12,46 @@ protocol CitiesInteractorProtocol {
     var presenter: CitiesPresenterOutputProtocol? { get set }
     func fetchCities()
     func fetchCities(refresh: Bool)
-    func fetchCityImage(for city: City)
-    func updateCity(city: City)
+    func fetchImage(for city: City)
+    func update(city: City)
 }
 
-final class CitiesInteractor: CitiesInteractorProtocol {
+protocol CityStorage: Storage where Entity == City {
+    init?()
+}
+
+extension UserDefaultsStorage: CityStorage where Entity == City {
+    
+    convenience init?() {
+        self.init(name: "Cities")
+    }
+    
+}
+
+final class FakeCityStorage: CityStorage {
+    
+    func store(_ entity: City) throws {
+    }
+    
+    func restore(_ entity: inout City) throws {
+    }
+    
+}
+
+final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
     
     weak var presenter: CitiesPresenterOutputProtocol?
     
     private let dataManager: CitiesRepositoryProtocol
     private let imageFetcher: ImageFetcherProtocol
+    private let storage: Storage?
     
     private var cities: Set<City> = .init()
     
-    init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher()) {
+    init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher(), storage: Storage? = Storage()) {
         self.dataManager = dataManager
         self.imageFetcher = imageFetcher
+        self.storage = storage
     }
     
     func fetchCities() {
@@ -36,24 +60,32 @@ final class CitiesInteractor: CitiesInteractorProtocol {
     
     func fetchCities(refresh: Bool) {
         guard cities.isEmpty || refresh else {
-            presenter?.present(cities: Array(cities))
+            presenter?.present(cities: cities.sorted())
             
             return
         }
         
-        dataManager.fetchCities { result in
+        dataManager.fetchCities { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success(let cities):
-                self.cities = Set(cities)
-                presenter?.present(cities: Array(self.cities))
+            case .success(var cities):
+                do {
+                    for index in cities.indices {
+                        try storage?.restore(&cities[index])
+                    }
+                    self.cities = Set(cities)
+                } catch {
+                    self.presenter?.showAlert(from: error)
+                }
+                self.presenter?.present(cities: self.cities.sorted())
             case .failure(let error):
-                self.cities = .init()
+                self.cities = []
                 presenter?.showAlert(from: error)
             }
         }
     }
     
-    func fetchCityImage(for city: City) {
+    func fetchImage(for city: City) {
         var city = city
         guard case let .placeholder(url) = city.imageData else {
             return
@@ -65,19 +97,22 @@ final class CitiesInteractor: CitiesInteractorProtocol {
         }
     }
     
-    func updateCity(city: City) {
+    func update(city: City) {
         cities.update(with: city)
-        presenter?.present(cities: Array(cities))
+        do {
+            try storage?.store(city)
+        } catch {
+            presenter?.showAlert(from: error)
+        }
+        presenter?.present(cities: cities.sorted())
     }
     
 }
 
-extension Set where Element == City {
+extension CitiesInteractor where Storage == FakeCityStorage {
     
-    func sortedByName() -> [City] {
-        return sorted { lhs, rhs in
-            lhs.name < rhs.name
-        }
+    convenience init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher()) {
+        self.init(dataManager: dataManager, imageFetcher: imageFetcher, storage: FakeCityStorage())
     }
     
 }
