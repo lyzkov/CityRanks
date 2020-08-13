@@ -3,7 +3,7 @@ info:
   version: 0.2.0
   title: CityRanks
 servers:
-  - url: 'https://daf43bbe-93d4-4f04-91d6-5bc7aa6fc05d.mock.pstmn.io'
+  - url: 'https://e933812d-a479-4a65-9fac-233e0468311a.mock.pstmn.io'
 paths:
   /cities:
     get:
