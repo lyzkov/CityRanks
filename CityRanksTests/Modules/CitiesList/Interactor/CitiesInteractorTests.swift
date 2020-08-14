@@ -32,7 +32,7 @@ final class CitiesInteractorTests: XCTestCase {
     func testFetchCities_whenIsSuccessful_thenPresentsCities() {
         interactor.fetchCities()
         
-        XCTAssertTrue(presenter.citiesToPresent == dataManager.cities.sorted())
+        XCTAssertTrue(presenter.citiesToPresent == dataManager.cities)
     }
     
     func testFetchCities_withRefresh_thenPresentsLastFetchedCities() {
@@ -55,7 +55,7 @@ final class CitiesInteractorTests: XCTestCase {
         dataManager.cities = []
         interactor.fetchCities(refresh: false)
         
-        XCTAssertEqual(presenter.citiesToPresent, cities.sorted())
+        XCTAssertEqual(presenter.citiesToPresent, cities)
     }
     
     func testFetchCities_withError_thenPresentsAlert() {

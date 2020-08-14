@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "1200px-POL_Kraków_COA.svg.png",
+      "filename" : "cracow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "1200px-POL_Kraków_COA.svg-1.png",
+      "filename" : "cracow-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "1200px-POL_Kraków_COA.svg-2.png",
+      "filename" : "cracow-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

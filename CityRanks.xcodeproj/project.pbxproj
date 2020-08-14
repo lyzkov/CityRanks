@@ -37,6 +37,7 @@
 		A37AA35124E157740028D46A /* CitiesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35024E157740028D46A /* CitiesInteractorTests.swift */; };
 		A37AA35324E158850028D46A /* CitiesPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */; };
 		A37AA35524E15B860028D46A /* FakeCitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */; };
+		A387384224E6C03A002A1CF0 /* OrderedSet+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387384124E6C03A002A1CF0 /* OrderedSet+Update.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		A37AA35024E157740028D46A /* CitiesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesInteractorTests.swift; sourceTree = "<group>"; };
 		A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPresenterSpy.swift; sourceTree = "<group>"; };
 		A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCitiesRepository.swift; sourceTree = "<group>"; };
+		A387384124E6C03A002A1CF0 /* OrderedSet+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Update.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 			children = (
 				A335EEC324DC121A00D9B948 /* URL+ExpressibleByStringLiteral.swift */,
 				A349E08D24E48BD600F69499 /* String+ImageConversion.swift */,
+				A387384124E6C03A002A1CF0 /* OrderedSet+Update.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				A349E08E24E48BD600F69499 /* String+ImageConversion.swift in Sources */,
 				A349E07B24E3443D00F69499 /* FakeImageFetcher.swift in Sources */,
 				A349E07724E1DD9400F69499 /* FetchableImage.swift in Sources */,
+				A387384224E6C03A002A1CF0 /* OrderedSet+Update.swift in Sources */,
 				A335EEB724DBE74700D9B948 /* CitiesPresenter.swift in Sources */,
 				A335EE8424DACEB200D9B948 /* AppDelegate.swift in Sources */,
 				A335EEC124DC0F4300D9B948 /* City.swift in Sources */,
