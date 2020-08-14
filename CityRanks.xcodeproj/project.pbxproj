@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		A37AA35324E158850028D46A /* CitiesPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */; };
 		A37AA35524E15B860028D46A /* FakeCitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */; };
 		A387384224E6C03A002A1CF0 /* OrderedSet+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387384124E6C03A002A1CF0 /* OrderedSet+Update.swift */; };
+        A387384024E6B64D002A1CF0 /* CityRanksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = A387383F24E6B64D002A1CF0 /* CityRanksAPIClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		A37AA35224E158850028D46A /* CitiesPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPresenterSpy.swift; sourceTree = "<group>"; };
 		A37AA35424E15B860028D46A /* FakeCitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCitiesRepository.swift; sourceTree = "<group>"; };
 		A387384124E6C03A002A1CF0 /* OrderedSet+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Update.swift"; sourceTree = "<group>"; };
+        A387383D24E6B608002A1CF0 /* CityRanksAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CityRanksAPI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A387384024E6B64D002A1CF0 /* CityRanksAPIClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +114,9 @@
 			children = (
 				A335EE8224DACEB200D9B948 /* CityRanks */,
 				A335EE9924DACEB500D9B948 /* CityRanksTests */,
+				A387383D24E6B608002A1CF0 /* CityRanksAPI */,
 				A335EE8124DACEB200D9B948 /* Products */,
+				A387383E24E6B64D002A1CF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -339,6 +344,13 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
+        A387383E24E6B64D002A1CF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,6 +367,9 @@
 			dependencies = (
 			);
 			name = CityRanks;
+			packageProductDependencies = (
+				A387383F24E6B64D002A1CF0 /* CityRanksAPIClient */,
+			);
 			productName = CityRanks;
 			productReference = A335EE8024DACEB200D9B948 /* CityRanks.app */;
 			productType = "com.apple.product-type.application";
@@ -723,6 +738,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A387383F24E6B64D002A1CF0 /* CityRanksAPIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CityRanksAPIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A335EE7824DACEB200D9B948 /* Project object */;
 }

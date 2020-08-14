@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  version: 0.1.0
+  title: CityRanks
+servers:
+  - url: 'https://37f228fa-9205-4054-9b2c-dbb8cc0875e8.mock.pstmn.io'
+    description: 'The mocking server v0.1.0'
+paths:
+  /cities:
+    get:
+      summary: 'Cities list: Return list of cities with image urls'
+      operationId: listCities
+      tags:
+        - city
+      responses:
+        '200':
+          description: 'Sample response: List of cities sorted by ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cities'
+              examples:
+                Cities:
+                  $ref: '#/components/examples/Cities'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  examples:
+    Cities:
+      description: Example cities list
+      value:
+        - id: 1
+          name: Wroclaw
+          image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Herb_wroclaw.svg/404px-Herb_wroclaw.svg.png
+        - id: 2
+          name: Warsaw
+          image: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/POL_Warszawa_COA.svg/286px-POL_Warszawa_COA.svg.png
+        - id: 3
+          name: Cracow
+          image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/POL_Krak%C3%B3w_COA.svg/1200px-POL_Krak%C3%B3w_COA.svg.png
+  schemas:
+    CityId:
+      type: integer
+      format: int64
+    City:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          $ref: '#/components/schemas/CityId'
+        name:
+          type: string
+        image:
+          type: string
+        rating:
+          type: number
+          format: double
+    Cities:
+      type: array
+      items:
+        $ref: '#/components/schemas/City'
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
