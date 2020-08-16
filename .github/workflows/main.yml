@@ -1,4 +1,4 @@
-name: XCode Test
+name: Main Workflow
 
 on:
   push:
