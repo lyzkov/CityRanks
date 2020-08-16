@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ImageFetcher
 
 private let cityImages = isRunningTests ?
     [UIImage(), UIImage(), UIImage()] :
@@ -21,7 +22,7 @@ final class FakeImageFetcher: ImageFetcherProtocol {
         self.imageData = imageData
     }
     
-    func fetch(from url: URL, completion handler: @escaping (FetchableImage) -> Void) {
+    func fetch(from url: URL, completion handler: @escaping (ImageResource) -> Void) {
         handler(.loadingPlaceholder)
         fetch(from: url) { (result: Result<Data, Error>) in
             switch result {

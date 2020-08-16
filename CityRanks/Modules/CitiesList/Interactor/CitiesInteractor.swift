@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Storage
+import ImageFetcher
 
 protocol CitiesInteractorProtocol {
     var presenter: CitiesPresenterOutputProtocol? { get set }
@@ -70,7 +72,7 @@ final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
         guard case let .placeholder(url) = city.imageData else {
             return
         }
-        imageFetcher.fetch(from: url) { [weak self] (image: FetchableImage) in
+        imageFetcher.fetch(from: url) { [weak self] (image: ImageResource) in
             city.imageData = image
             self?.cities.update(with: city)
             self?.presenter?.presentImage(city: city)
