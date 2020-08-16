@@ -19,7 +19,7 @@ final class FakeCityRepository: CityRepositoryProtocol {
     let fixtures = FixturesLoader<[CityRanksAPIClient.City]>()
     
     init() {
-        cities = try! fixtures.load(resource: "CitiesList").compactMap(City.init(from:))
+        cities = (try? fixtures.load(resource: "CitiesList").compactMap(City.init(from:))) ?? []
     }
     
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {
