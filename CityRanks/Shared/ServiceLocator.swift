@@ -10,7 +10,7 @@ import Foundation
 import ImageFetcher
 import Storage
 
-private let fake = true
+private let fake = CommandLine.arguments.contains("--use-fakes")
 
 enum ServiceLocator {
     
