@@ -18,7 +18,7 @@ protocol CityRenderable {
 extension City: CityRenderable {
     
     var image: UIImage? {
-        return imageData.image
+        return UIImage(from: imageData)
     }
     
 }

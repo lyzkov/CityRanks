@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Storage {
+public protocol StorageProtocol {
     associatedtype Entity: Storable
     
     func store(_ entity: Entity) throws

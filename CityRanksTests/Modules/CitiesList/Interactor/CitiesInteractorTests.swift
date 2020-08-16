@@ -12,47 +12,47 @@ import XCTest
 
 final class CitiesInteractorTests: XCTestCase {
 
-    private var dataManager: FakeCitiesRepository!
+    private var repository: FakeCityRepository!
     private var imageFetcher: FakeImageFetcher!
-    private var storage: FakeCityStorage!
+    private var storage: CityStorage!
     private var presenter: CitiesPresenterSpy!
-    private var interactor: CitiesInteractor<FakeCityStorage>!
+    private var interactor: CitiesInteractor!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        dataManager = FakeCitiesRepository()
+        repository = FakeCityRepository()
         imageFetcher = FakeImageFetcher()
-        storage = FakeCityStorage()
+        storage = CityStorage(fake: true)
         presenter = CitiesPresenterSpy()
-        interactor = CitiesInteractor(dataManager: dataManager, imageFetcher: imageFetcher, storage: storage)
+        interactor = CitiesInteractor(repository: repository, imageFetcher: imageFetcher, storage: storage)
         interactor.presenter = presenter
     }
 
     func testFetchCities_whenIsSuccessful_thenPresentsCities() {
         interactor.fetchCities()
         
-        XCTAssertTrue(presenter.citiesToPresent == dataManager.cities)
+        XCTAssertTrue(presenter.citiesToPresent == repository.cities)
     }
     
     func testFetchCities_withRefresh_thenPresentsLastFetchedCities() {
         interactor.fetchCities()
-        dataManager.cities = []
+        repository.cities = []
         interactor.fetchCities(refresh: true)
         
         XCTAssertEqual(presenter.citiesToPresent, [])
         
-        dataManager.cities = [City.warsaw]
+        repository.cities = [[City].polish.first!]
         interactor.fetchCities(refresh: true)
         
-        XCTAssertEqual(presenter.citiesToPresent, [City.warsaw])
+        XCTAssertEqual(presenter.citiesToPresent, repository.cities)
     }
     
     func testFetchCities_withNoRefresh_thenPresentsLastFetchedCities() {
-        let cities = dataManager.cities
+        let cities = repository.cities
         
         interactor.fetchCities()
-        dataManager.cities = []
+        repository.cities = []
         interactor.fetchCities(refresh: false)
         
         XCTAssertEqual(presenter.citiesToPresent, cities)
@@ -61,7 +61,7 @@ final class CitiesInteractorTests: XCTestCase {
     func testFetchCities_withError_thenPresentsAlert() {
         let error: Error = NSError()
         
-        dataManager.error = error
+        repository.error = error
         interactor.fetchCities()
 
         XCTAssertTrue(presenter.errorToShow as AnyObject? === error as AnyObject)

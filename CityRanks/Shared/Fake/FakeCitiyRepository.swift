@@ -1,5 +1,5 @@
 //
-//  FakeCitiesRepository.swift
+//  FakeCityRepository.swift
 //  CityRanks
 //
 //  Created by lyzkov on 10/08/2020.
@@ -7,17 +7,20 @@
 //
 
 import Foundation
-
-protocol CitiesRepositoryProtocol {
-    func fetchCities(completion handler: (Result<[City], Error>) -> Void)
-}
+import CityRanksAPIClient
 
 /// TODO: Replace with actual implementation that fetches cities from API
-final class FakeCitiesRepository: CitiesRepositoryProtocol {
+final class FakeCityRepository: CityRepositoryProtocol {
     
-    var cities: [City] = .polish
+    var cities: [City] = []
     
     var error: Error? = nil
+    
+    let fixtures = FixturesLoader<[CityRanksAPIClient.City]>()
+    
+    init() {
+        cities = (try? fixtures.load(resource: "CitiesList").compactMap(City.init(from:))) ?? []
+    }
     
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {
         if let error = error {
@@ -26,5 +29,13 @@ final class FakeCitiesRepository: CitiesRepositoryProtocol {
             handler(.success(cities))
         }
     }
+    
+}
+
+extension Array where Element == City {
+    
+    static let polish: [City] = {
+        return FakeCityRepository().cities
+    }()
     
 }

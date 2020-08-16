@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class UserDefaultsStorage<Entity: Storable>: Storage {
+public final class UserDefaultsStorage<Entity: Storable>: StorageProtocol {
     
     private let localStorage: UserDefaults
     
@@ -16,19 +16,19 @@ final class UserDefaultsStorage<Entity: Storable>: Storage {
     
     private let decoder = JSONDecoder()
     
-    init?(name: String) {
+    public init?(name: String) {
         guard let localStorage = UserDefaults(suiteName: name) else {
             return nil
         }
         self.localStorage = localStorage
     }
     
-    func store(_ entity: Entity) throws {
-        try localStorage.set(encoder.encode(entity), forKey: String(entity.id.rawValue))
+    public func store(_ entity: Entity) throws {
+        try localStorage.set(encoder.encode(entity), forKey: entity.storingKey)
     }
     
-    func restore(_ entity: inout Entity) throws {
-        guard let data = localStorage.data(forKey: String(entity.id.rawValue)) else {
+    public func restore(_ entity: inout Entity) throws {
+        guard let data = localStorage.data(forKey: entity.storingKey) else {
             return
         }
         try entity.update(with: decoder.decode(Entity.self, from: data))

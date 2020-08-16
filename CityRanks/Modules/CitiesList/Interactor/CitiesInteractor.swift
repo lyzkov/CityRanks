@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Storage
+import ImageFetcher
 
 protocol CitiesInteractorProtocol {
     var presenter: CitiesPresenterOutputProtocol? { get set }
@@ -16,20 +18,17 @@ protocol CitiesInteractorProtocol {
     func update(city: City)
 }
 
-final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
+final class CitiesInteractor: CitiesInteractorProtocol {
     
     weak var presenter: CitiesPresenterOutputProtocol?
-    
-    private let dataManager: CitiesRepositoryProtocol
+    private let repository: CityRepositoryProtocol
     private let imageFetcher: ImageFetcherProtocol
-    private let storage: Storage?
+    private let storage: CityStorage
     
-//    private var cities: Set<City> = .init()
+    private var cities: OrderedSet<City> = []
     
-    private var cities: OrderedSet<City> = .init()
-    
-    init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher(), storage: Storage? = Storage()) {
-        self.dataManager = dataManager
+    init(repository: CityRepositoryProtocol = ServiceLocator.cityRepository, imageFetcher: ImageFetcherProtocol = ServiceLocator.imageFetcher, storage: CityStorage = ServiceLocator.cityStorage) {
+        self.repository = repository
         self.imageFetcher = imageFetcher
         self.storage = storage
     }
@@ -45,13 +44,13 @@ final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
             return
         }
         
-        dataManager.fetchCities { [weak self] result in
+        repository.fetchCities { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(var cities):
                 do {
                     for index in cities.indices {
-                        try storage?.restore(&cities[index])
+                        try self.storage.restore(&cities[index])
                     }
                     self.cities = OrderedSet(sequence: cities)
                 } catch {
@@ -60,7 +59,7 @@ final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
                 self.presenter?.present(cities: Array(self.cities))
             case .failure(let error):
                 self.cities = []
-                presenter?.showAlert(from: error)
+                self.presenter?.showAlert(from: error)
             }
         }
     }
@@ -70,7 +69,7 @@ final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
         guard case let .placeholder(url) = city.imageData else {
             return
         }
-        imageFetcher.fetch(from: url) { [weak self] (image: FetchableImage) in
+        imageFetcher.fetch(from: url) { [weak self] (image: ImageResource) in
             city.imageData = image
             self?.cities.update(with: city)
             self?.presenter?.presentImage(city: city)
@@ -80,41 +79,11 @@ final class CitiesInteractor<Storage: CityStorage>: CitiesInteractorProtocol {
     func update(city: City) {
         cities.update(with: city)
         do {
-            try storage?.store(city)
+            try storage.store(city)
         } catch {
             presenter?.showAlert(from: error)
         }
         presenter?.present(cities: Array(cities))
-    }
-    
-}
-
-extension CitiesInteractor where Storage == FakeCityStorage {
-    
-    convenience init(dataManager: CitiesRepositoryProtocol = FakeCitiesRepository(), imageFetcher: ImageFetcherProtocol = FakeImageFetcher()) {
-        self.init(dataManager: dataManager, imageFetcher: imageFetcher, storage: FakeCityStorage())
-    }
-    
-}
-
-protocol CityStorage: Storage where Entity == City {
-    init?()
-}
-
-extension UserDefaultsStorage: CityStorage where Entity == City {
-    
-    convenience init?() {
-        self.init(name: "Cities")
-    }
-    
-}
-
-final class FakeCityStorage: CityStorage {
-    
-    func store(_ entity: City) throws {
-    }
-    
-    func restore(_ entity: inout City) throws {
     }
     
 }

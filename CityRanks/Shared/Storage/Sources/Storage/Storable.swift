@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol Storable: Codable, Identifiable where RawRepresentation: LosslessStringConvertible {
+public protocol Storable: Codable {
+    var storingKey: String { get }
     mutating func update(with restored: Self) throws
 }
