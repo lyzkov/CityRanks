@@ -28,7 +28,7 @@ final class CityRepository: CityRepositoryProtocol {
     
 }
 
-private extension City {
+extension City {
     
     init?(from city: CityRanksAPIClient.City) {
         guard let imageUrl = URL(string: city.image ?? "") else {

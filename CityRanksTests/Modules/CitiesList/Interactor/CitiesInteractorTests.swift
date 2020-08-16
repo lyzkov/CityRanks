@@ -42,10 +42,10 @@ final class CitiesInteractorTests: XCTestCase {
         
         XCTAssertEqual(presenter.citiesToPresent, [])
         
-        repository.cities = [City.warsaw]
+        repository.cities = [[City].polish.first!]
         interactor.fetchCities(refresh: true)
         
-        XCTAssertEqual(presenter.citiesToPresent, [City.warsaw])
+        XCTAssertEqual(presenter.citiesToPresent, repository.cities)
     }
     
     func testFetchCities_withNoRefresh_thenPresentsLastFetchedCities() {

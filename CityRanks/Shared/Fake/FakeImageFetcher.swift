@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 import ImageFetcher
 
-private let cityImages = isRunningTests ?
-    [UIImage(), UIImage(), UIImage()] :
-    [UIImage(named: "cracow")!, UIImage(named: "wroclaw")!, UIImage(named: "warsaw")!]
+private let cityImages = [
+    UIImage(named: "cracow")!,
+    UIImage(named: "wroclaw")!,
+    UIImage(named: "warsaw")!
+]
 
 final class FakeImageFetcher: ImageFetcherProtocol {
     
