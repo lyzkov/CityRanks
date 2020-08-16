@@ -79,3 +79,26 @@ extension Array where Element == City {
     ]
     
 }
+
+final class CityStorage: StorageProtocol {
+    
+    private let storage = UserDefaultsStorage<City>(name: "Cities")!
+    
+    private let fake: Bool
+    
+    init(fake: Bool = false) {
+        self.fake = fake
+    }
+    
+    func store(_ entity: City) throws {
+        if !fake {
+            try storage.store(entity)
+        }
+    }
+    
+    func restore(_ entity: inout City) throws {
+        if !fake {
+            try storage.restore(&entity)
+        }
+    }
+}

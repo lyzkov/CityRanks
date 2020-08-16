@@ -17,7 +17,7 @@ public final class ImageFetcher: ImageFetcherProtocol {
     
     private let urlSession: URLSession
     
-    init(urlSession: URLSession) {
+    public init(urlSession: URLSession) {
         self.urlSession = urlSession
     }
     
@@ -35,12 +35,14 @@ public final class ImageFetcher: ImageFetcherProtocol {
     
     public func fetch(from url: URL, completion handler: @escaping (Result<Data, Error>) -> Void) {
         urlSession.dataTask(with: url) { data, response, error in
-            if let error = error {
-                handler(.failure(error))
-            } else if let data = data {
-                handler(.success(data))
+            DispatchQueue.main.async {
+                if let error = error {
+                    handler(.failure(error))
+                } else if let data = data {
+                    handler(.success(data))
+                }
             }
-        }
+        }.resume()
     }
     
 }

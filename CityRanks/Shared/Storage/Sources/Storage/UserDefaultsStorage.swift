@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class UserDefaultsStorage<Entity: Storable>: Storage {
+public final class UserDefaultsStorage<Entity: Storable>: StorageProtocol {
     
     private let localStorage: UserDefaults
     
