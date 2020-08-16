@@ -14,7 +14,7 @@ private let fake = CommandLine.arguments.contains("--use-fakes")
 
 enum ServiceLocator {
     
-    static let cityRepository: CitiesRepositoryProtocol = FakeCitiesRepository()
+    static let cityRepository: CityRepositoryProtocol = fake ? FakeCityRepository() : CityRepository()
     
     static let urlSession: URLSession = URLSession.shared
     

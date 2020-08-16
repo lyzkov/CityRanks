@@ -21,14 +21,14 @@ protocol CitiesInteractorProtocol {
 final class CitiesInteractor: CitiesInteractorProtocol {
     
     weak var presenter: CitiesPresenterOutputProtocol?
-    private let dataManager: CitiesRepositoryProtocol
+    private let repository: CityRepositoryProtocol
     private let imageFetcher: ImageFetcherProtocol
     private let storage: CityStorage
     
     private var cities: OrderedSet<City> = []
     
-    init(dataManager: CitiesRepositoryProtocol = ServiceLocator.cityRepository, imageFetcher: ImageFetcherProtocol = ServiceLocator.imageFetcher, storage: CityStorage = ServiceLocator.cityStorage) {
-        self.dataManager = dataManager
+    init(repository: CityRepositoryProtocol = ServiceLocator.cityRepository, imageFetcher: ImageFetcherProtocol = ServiceLocator.imageFetcher, storage: CityStorage = ServiceLocator.cityStorage) {
+        self.repository = repository
         self.imageFetcher = imageFetcher
         self.storage = storage
     }
@@ -44,13 +44,13 @@ final class CitiesInteractor: CitiesInteractorProtocol {
             return
         }
         
-        dataManager.fetchCities { [weak self] result in
+        repository.fetchCities { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(var cities):
                 do {
                     for index in cities.indices {
-                        try storage.restore(&cities[index])
+                        try self.storage.restore(&cities[index])
                     }
                     self.cities = OrderedSet(sequence: cities)
                 } catch {
@@ -59,7 +59,7 @@ final class CitiesInteractor: CitiesInteractorProtocol {
                 self.presenter?.present(cities: Array(self.cities))
             case .failure(let error):
                 self.cities = []
-                presenter?.showAlert(from: error)
+                self.presenter?.showAlert(from: error)
             }
         }
     }
