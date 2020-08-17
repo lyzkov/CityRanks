@@ -10,6 +10,7 @@ import UIKit
 
 protocol CitiesViewProtocol {
     var presenter: CitiesPresenterInputProtocol! { get set }
+    
     func renderCitiesList()
     func renderCityImage(forRowAt indexPath: IndexPath)
 }
@@ -102,6 +103,10 @@ extension CitiesView {
                 success(true)
             })
         ])
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.showDetails(forRowAt: indexPath)
     }
     
 }

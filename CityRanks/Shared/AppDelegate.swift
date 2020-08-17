@@ -11,8 +11,6 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    var rootWireframe = CitiesWireframe()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
@@ -24,8 +22,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func installRootViewController() {
         let rootNavigation = UINavigationController()
-        
-        rootWireframe.presentModule(from: rootNavigation)
+        CitiesWireframe().presentModule(from: rootNavigation)
         
         window?.rootViewController = rootNavigation
         window?.makeKeyAndVisible()

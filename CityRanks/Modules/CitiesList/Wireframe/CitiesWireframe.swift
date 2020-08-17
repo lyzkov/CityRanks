@@ -6,22 +6,22 @@
 //  Copyright © 2020 lyzkov. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-protocol WireframeProtocol {
+protocol CitiesWireframeProtocol {
+    func presentDetails(for city: City)
     
-    var root: UIViewController? { get set }
-    func presentModule(from window: UIWindow)
     func presentModule(from navigationController: UINavigationController)
     func presentModule(from viewController: UIViewController)
     func presentAlert(from error: Error)
 }
 
-final class CitiesWireframe: WireframeProtocol {
+final class CitiesWireframe: CitiesWireframeProtocol, WireframeProtocol {
     
-    var root: UIViewController?
+    weak var root: UIViewController?
     
-    var view: CitiesView {
+    var view: UIViewController {
         let view = CitiesView()
         let interactor = CitiesInteractor()
         let presenter = CitiesPresenter(wireframe: self, view: view, interactor: interactor)
@@ -31,33 +31,9 @@ final class CitiesWireframe: WireframeProtocol {
         return view
     }
     
-    func presentModule(from window: UIWindow) {
-        window.rootViewController = view
-        window.makeKeyAndVisible()
-        root = view
-    }
-    
-    func presentModule(from navigationController: UINavigationController) {
-        navigationController.pushViewController(view, animated: true)
-        root = navigationController
-    }
-    
-    func presentModule(from viewController: UIViewController) {
-        viewController.present(view, animated: true)
-        root = viewController
-    }
-    
-    func presentAlert(from error: Error) {
-        let alert = UIAlertController(
-            title: "Unexpected Error",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        root?.present(alert, animated: true)
+    func presentDetails(for city: City) {
+        guard let navigationController = root as? UINavigationController else { return }
+        CityDetailsWireframe().presentModule(from: navigationController)
     }
 
-}
-
-extension CitiesWireframe: RootWireframe {
-    
 }
