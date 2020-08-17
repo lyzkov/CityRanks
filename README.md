@@ -2,7 +2,7 @@
 
 ### Installation
 
-Clone project from repository and run `CityRanks.pbxproj`.
+Clone project from repository and open `CityRanks.pbxproj` file and build application from "CityRanks" scheme.
 
 ### Usage
 
