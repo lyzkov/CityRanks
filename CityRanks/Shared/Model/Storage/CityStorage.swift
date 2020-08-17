@@ -9,7 +9,6 @@
 import Foundation
 import Storage
 
-/// TODO: replace below erasure type with opaque type introduced in iOS13
 final class CityStorage: StorageProtocol {
     
     private let storage = UserDefaultsStorage<City>(name: "Cities")!

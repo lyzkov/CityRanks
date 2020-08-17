@@ -9,7 +9,6 @@
 import Foundation
 import CityRanksAPIClient
 
-/// TODO: Replace with actual implementation that fetches cities from API
 final class FakeCityRepository: CityRepositoryProtocol {
     
     var cities: [City] = []
