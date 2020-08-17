@@ -14,7 +14,7 @@ Application is backed by Postman mocking server. [Here](https://red-sunset-22794
 
 ### Architecture
 
-Project is organized in modules that follows [VIPER](https://mutualmobile.com/resources/meet-viper-fast-agile-non-lethal-ios-architecture-framework) architecture and CLEAN principles. Any services that can be developed independently and reused between modules are extracted into swift packages.
+Project is organized in modules that follows [VIPER](https://mutualmobile.com/resources/meet-viper-fast-agile-non-lethal-ios-architecture-framework) architecture and [CLEAN](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) principles. Any services that can be developed independently and reused between modules are extracted into swift packages.
 
 ### Required features
 
