@@ -7,7 +7,7 @@
 import Foundation
 
 open class OpenAPIClientAPI {
-    public static var basePath = "https://37f228fa-9205-4054-9b2c-dbb8cc0875e8.mock.pstmn.io"
+    public static var basePath = "https://e933812d-a479-4a65-9fac-233e0468311a.mock.pstmn.io"
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
