@@ -14,7 +14,7 @@
 		A333177B24E94645006D67A0 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333177A24E94645006D67A0 /* ServiceLocator.swift */; };
 		A333178024E99B30006D67A0 /* CityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333177F24E99B30006D67A0 /* CityStorage.swift */; };
 		A333178324E99BF0006D67A0 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333178224E99BF0006D67A0 /* CityRepository.swift */; };
-		A333178724E9DB3F006D67A0 /* CitiesList.json in Resources */ = {isa = PBXBuildFile; fileRef = A333178524E9C90D006D67A0 /* CitiesList.json */; };
+		A333178724E9DB3F006D67A0 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = A333178524E9C90D006D67A0 /* Cities.json */; };
 		A333178924E9E5A8006D67A0 /* FixturesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333178824E9E5A8006D67A0 /* FixturesLoader.swift */; };
 		A333178B24E9E65D006D67A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A335EE8C24DACEB500D9B948 /* Assets.xcassets */; };
 		A335EE8424DACEB200D9B948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EE8324DACEB200D9B948 /* AppDelegate.swift */; };
@@ -32,6 +32,9 @@
 		A335EECC24DCBEC300D9B948 /* CitiesViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EECB24DCBEC300D9B948 /* CitiesViewSpy.swift */; };
 		A335EED024DCC06400D9B948 /* CitiesInteractorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EECF24DCC06300D9B948 /* CitiesInteractorSpy.swift */; };
 		A335EED224DCC13500D9B948 /* CitiesWireframeSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A335EED124DCC13500D9B948 /* CitiesWireframeSpy.swift */; };
+		A340AC2E24EC542100C411F1 /* CityFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340AC2D24EC542100C411F1 /* CityFixture.swift */; };
+		A340AC3024EC544100C411F1 /* UserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340AC2F24EC544100C411F1 /* UserFixture.swift */; };
+		A340AC3224EC57AC00C411F1 /* ImageURLAssets.json in Resources */ = {isa = PBXBuildFile; fileRef = A340AC3124EC57AC00C411F1 /* ImageURLAssets.json */; };
 		A349E08824E4590E00F69499 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349E08724E4590E00F69499 /* OrderedSet.swift */; };
 		A349E08C24E487F000F69499 /* CityRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349E08B24E487F000F69499 /* CityRenderable.swift */; };
 		A349E08E24E48BD600F69499 /* String+ImageConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349E08D24E48BD600F69499 /* String+ImageConversion.swift */; };
@@ -73,7 +76,7 @@
 		A333177A24E94645006D67A0 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		A333177F24E99B30006D67A0 /* CityStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityStorage.swift; sourceTree = "<group>"; };
 		A333178224E99BF0006D67A0 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
-		A333178524E9C90D006D67A0 /* CitiesList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitiesList.json; sourceTree = "<group>"; };
+		A333178524E9C90D006D67A0 /* Cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
 		A333178824E9E5A8006D67A0 /* FixturesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesLoader.swift; sourceTree = "<group>"; };
 		A335EE8024DACEB200D9B948 /* CityRanks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityRanks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A335EE8324DACEB200D9B948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +97,9 @@
 		A335EECB24DCBEC300D9B948 /* CitiesViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewSpy.swift; sourceTree = "<group>"; };
 		A335EECF24DCC06300D9B948 /* CitiesInteractorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesInteractorSpy.swift; sourceTree = "<group>"; };
 		A335EED124DCC13500D9B948 /* CitiesWireframeSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesWireframeSpy.swift; sourceTree = "<group>"; };
+		A340AC2D24EC542100C411F1 /* CityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityFixture.swift; sourceTree = "<group>"; };
+		A340AC2F24EC544100C411F1 /* UserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixture.swift; sourceTree = "<group>"; };
+		A340AC3124EC57AC00C411F1 /* ImageURLAssets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ImageURLAssets.json; sourceTree = "<group>"; };
 		A349E08724E4590E00F69499 /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		A349E08B24E487F000F69499 /* CityRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRenderable.swift; sourceTree = "<group>"; };
 		A349E08D24E48BD600F69499 /* String+ImageConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ImageConversion.swift"; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		A333177924E94443006D67A0 /* Fake */ = {
 			isa = PBXGroup;
 			children = (
+				A340AC2C24EC540900C411F1 /* Fixtures */,
 				A335EEA724DAD0A000D9B948 /* FakeAppDelegate.swift */,
 				A37AA35424E15B860028D46A /* FakeCitiyRepository.swift */,
 				A333177424E940DB006D67A0 /* FakeImageFetcher.swift */,
@@ -168,7 +175,8 @@
 		A333178424E9C8E6006D67A0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				A333178524E9C90D006D67A0 /* CitiesList.json */,
+				A333178524E9C90D006D67A0 /* Cities.json */,
+				A340AC3124EC57AC00C411F1 /* ImageURLAssets.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -369,6 +377,15 @@
 			path = Spy;
 			sourceTree = "<group>";
 		};
+		A340AC2C24EC540900C411F1 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				A340AC2D24EC542100C411F1 /* CityFixture.swift */,
+				A340AC2F24EC544100C411F1 /* UserFixture.swift */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		A349E08624E458FD00F69499 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,8 +560,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A333178724E9DB3F006D67A0 /* CitiesList.json in Resources */,
+				A333178724E9DB3F006D67A0 /* Cities.json in Resources */,
 				A335EE9024DACEB500D9B948 /* LaunchScreen.storyboard in Resources */,
+				A340AC3224EC57AC00C411F1 /* ImageURLAssets.json in Resources */,
 				A335EE8D24DACEB500D9B948 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +604,7 @@
 				A3B05D3D24EC2655008854D9 /* UIButton+Closure.swift in Sources */,
 				A349E08C24E487F000F69499 /* CityRenderable.swift in Sources */,
 				A335EEB524DBE56400D9B948 /* CitiesView.swift in Sources */,
+				A340AC2E24EC542100C411F1 /* CityFixture.swift in Sources */,
 				A333178024E99B30006D67A0 /* CityStorage.swift in Sources */,
 				A3B05D2B24EAC5B2008854D9 /* CityDetailsPresenter.swift in Sources */,
 				A335EEC424DC121A00D9B948 /* URL+ExpressibleByStringLiteral.swift in Sources */,
@@ -594,6 +613,7 @@
 				A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */,
 				A335EEB924DBE83700D9B948 /* CitiesInteractor.swift in Sources */,
 				A3B05D3B24EC1F9A008854D9 /* CityVisitorsButton.swift in Sources */,
+				A340AC3024EC544100C411F1 /* UserFixture.swift in Sources */,
 				A349E08824E4590E00F69499 /* OrderedSet.swift in Sources */,
 				A3B05D3124EBEFDF008854D9 /* CityImageView.swift in Sources */,
 				A3B05D3724EC1E00008854D9 /* CityDetailsRenderable.swift in Sources */,

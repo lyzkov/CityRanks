@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CityRanksAPIClient
 
 /// TODO: Replace with actual implementation that fetches cities from API
 final class FakeCityRepository: CityRepositoryProtocol {
@@ -16,10 +15,10 @@ final class FakeCityRepository: CityRepositoryProtocol {
     
     var error: Error? = nil
     
-    let fixtures = FixturesLoader<[CityRanksAPIClient.City]>()
+    let fixtures = FixturesLoader<[CityFixture]>()
     
     init() {
-        cities = (try? fixtures.load(resource: "CitiesList").compactMap(City.init(from:))) ?? []
+        cities = (try! fixtures.load(resource: "Cities").compactMap(City.init(from:)))
     }
     
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {
@@ -33,8 +32,8 @@ final class FakeCityRepository: CityRepositoryProtocol {
     func fetchDetails(for city: City, completion handler: @escaping (Result<City, Error>) -> Void) {
         if let error = error {
             handler(.failure(error))
-        } else {
-            handler(.success(City(id: 1, name: "Wrocław", favorite: true, imageData: .placeholder(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Herb_wroclaw.svg/404px-Herb_wroclaw.svg.png")!), visitors: [User(name: "ddd")])))
+        } else if let index = cities.firstIndex(of: city) {
+            handler(.success(cities[index]))
         }
     }
     

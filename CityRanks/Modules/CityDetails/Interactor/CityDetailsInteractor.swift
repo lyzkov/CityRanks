@@ -55,18 +55,13 @@ final class CityDetailsInteractor: CityDetailsInteractorProtocol {
     }
     
     func fetchImage(for city: City) {
-        var city = city
         guard case let .placeholder(url) = city.imageData else {
             return
         }
         imageFetcher.fetch(from: url) { [weak self] (image: ImageResource) in
-            city.imageData = image
-            do {
-                try self?.city?.update(with: city)
-                self?.presenter?.present(cityDetails: city)
-            } catch {
-                self?.presenter?.showAlert(from: error)
-            }
+            guard let city = self?.city else { return }
+            self?.city?.imageData = image
+            self?.presenter?.present(cityDetails: city)
         }
     }
     
