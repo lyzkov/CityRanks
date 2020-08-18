@@ -18,7 +18,9 @@ final class CityDetailsWireframe: CityDetailsWireframeProtocol {
     
     var view: UIViewController {
         let view = CityDetailsView()
-        let presenter = CityDetailsPresenter(wireframe: self, view: view, city: city)
+        let interactor = CityDetailsInteractor()
+        let presenter = CityDetailsPresenter(wireframe: self, view: view, interactor: interactor, city: city)
+        interactor.presenter = presenter
         view.presenter = presenter
         
         return view

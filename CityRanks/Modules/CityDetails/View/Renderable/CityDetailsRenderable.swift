@@ -12,8 +12,13 @@ import UIKit
 protocol CityDetailsRenderable {
     var name: String! { get }
     var image: UIImage? { get }
-//    var visitors: [String]? { get }
+    func getVisitors() -> [VisitorRenderable]?
 }
 
 extension City: CityDetailsRenderable {
+    
+    func getVisitors() -> [VisitorRenderable]? {
+        return visitors
+    }
+    
 }

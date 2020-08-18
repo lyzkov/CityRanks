@@ -11,7 +11,7 @@ import UIKit
 protocol CityDetailsViewProtocol: class {
     var presenter: CityDetailsPresenterInputProtocol! { get set }
     
-    func render(city: CityDetailsRenderable)
+    func render(cityDetails: CityDetailsRenderable)
 }
 
 final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
@@ -59,9 +59,13 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
         view.layoutMargins.right = Default.marginHorizontal
     }
     
-    func render(city: CityDetailsRenderable) {
-        cityNameLabel.text = city.name
-        cityImageView.image = city.image
+    func render(cityDetails: CityDetailsRenderable) {
+        cityNameLabel.text = cityDetails.name
+        if let image = cityDetails.image {
+            cityImageView.image = image
+        } else {
+            presenter.loadCityImage()
+        }
     }
 
 }

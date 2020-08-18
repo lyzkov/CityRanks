@@ -30,6 +30,14 @@ final class FakeCityRepository: CityRepositoryProtocol {
         }
     }
     
+    func fetchDetails(for city: City, completion handler: @escaping (Result<City, Error>) -> Void) {
+        if let error = error {
+            handler(.failure(error))
+        } else {
+            handler(.success(City(id: 1, name: "Wrocław", favorite: true, imageData: .placeholder(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Herb_wroclaw.svg/404px-Herb_wroclaw.svg.png")!), visitors: [User(name: "ddd")])))
+        }
+    }
+    
 }
 
 extension Array where Element == City {

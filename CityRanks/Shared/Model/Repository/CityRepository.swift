@@ -11,6 +11,7 @@ import CityRanksAPIClient
 
 protocol CityRepositoryProtocol {
     func fetchCities(completion handler: @escaping (Result<[City], Error>) -> Void)
+    func fetchDetails(for city: City, completion handler: @escaping (Result<City, Error>) -> Void)
 }
 
 final class CityRepository: CityRepositoryProtocol {
@@ -24,6 +25,10 @@ final class CityRepository: CityRepositoryProtocol {
                 handler(.success(cities.compactMap(City.init(from:))))
             }
         }
+    }
+    
+    func fetchDetails(for city: City, completion handler: @escaping (Result<City, Error>) -> Void) {
+        
     }
     
 }

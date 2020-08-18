@@ -52,6 +52,7 @@
 		A3B05D3924EC1EC5008854D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B05D3824EC1EC5008854D9 /* User.swift */; };
 		A3B05D3B24EC1F9A008854D9 /* CityVisitorsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B05D3A24EC1F9A008854D9 /* CityVisitorsButton.swift */; };
 		A3B05D3D24EC2655008854D9 /* UIButton+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B05D3C24EC2655008854D9 /* UIButton+Closure.swift */; };
+		A3B05D3F24EC301C008854D9 /* VisitorRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B05D3E24EC301C008854D9 /* VisitorRenderable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		A3B05D3824EC1EC5008854D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3B05D3A24EC1F9A008854D9 /* CityVisitorsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVisitorsButton.swift; sourceTree = "<group>"; };
 		A3B05D3C24EC2655008854D9 /* UIButton+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Closure.swift"; sourceTree = "<group>"; };
+		A3B05D3E24EC301C008854D9 /* VisitorRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorRenderable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,8 +287,8 @@
 		A335EEB224DBE51F00D9B948 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A3B05D4124EC30B0008854D9 /* Renderable */,
 				A335EEB424DBE56400D9B948 /* CitiesView.swift */,
-				A349E08B24E487F000F69499 /* CityRenderable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,11 +422,11 @@
 		A3B05D2224EAC2EB008854D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A3B05D4024EC304E008854D9 /* Renderable */,
 				A3B05D2C24EAC607008854D9 /* CityDetailsView.swift */,
 				A3B05D3024EBEFDF008854D9 /* CityImageView.swift */,
 				A3B05D3224EBF004008854D9 /* CityNameLabel.swift */,
 				A3B05D3424EBF026008854D9 /* CityDetailsStack.swift */,
-				A3B05D3624EC1E00008854D9 /* CityDetailsRenderable.swift */,
 				A3B05D3A24EC1F9A008854D9 /* CityVisitorsButton.swift */,
 			);
 			path = View;
@@ -436,6 +438,23 @@
 				A3B05D2824EAC57B008854D9 /* CityDetailsInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A3B05D4024EC304E008854D9 /* Renderable */ = {
+			isa = PBXGroup;
+			children = (
+				A3B05D3624EC1E00008854D9 /* CityDetailsRenderable.swift */,
+				A3B05D3E24EC301C008854D9 /* VisitorRenderable.swift */,
+			);
+			path = Renderable;
+			sourceTree = "<group>";
+		};
+		A3B05D4124EC30B0008854D9 /* Renderable */ = {
+			isa = PBXGroup;
+			children = (
+				A349E08B24E487F000F69499 /* CityRenderable.swift */,
+			);
+			path = Renderable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,6 +590,7 @@
 				A3B05D2B24EAC5B2008854D9 /* CityDetailsPresenter.swift in Sources */,
 				A335EEC424DC121A00D9B948 /* URL+ExpressibleByStringLiteral.swift in Sources */,
 				A3B05D3324EBF004008854D9 /* CityNameLabel.swift in Sources */,
+				A3B05D3F24EC301C008854D9 /* VisitorRenderable.swift in Sources */,
 				A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */,
 				A335EEB924DBE83700D9B948 /* CitiesInteractor.swift in Sources */,
 				A3B05D3B24EC1F9A008854D9 /* CityVisitorsButton.swift in Sources */,
