@@ -61,6 +61,9 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
     
     func render(cityDetails: CityDetailsRenderable) {
         cityNameLabel.text = cityDetails.name
+        if let visitors = cityDetails.getVisitors() {
+            cityVisitorsButton.numberOfVisitors = visitors.count
+        }
         if let image = cityDetails.image {
             cityImageView.image = image
         } else {

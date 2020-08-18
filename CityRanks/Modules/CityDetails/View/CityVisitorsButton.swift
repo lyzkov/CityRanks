@@ -17,13 +17,18 @@ final class CityVisitorsButton: UIButton {
     
     lazy var heightConstraint = heightAnchor.constraint(equalToConstant: Default.height)
     
+    var numberOfVisitors: Int = 0 {
+        didSet {
+            setTitle("Visitors: \(numberOfVisitors)", for: .normal)
+        }
+    }
+    
     init(action: @escaping () -> Void = {}) {
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         
         setTitleColor(.blue, for: .normal)
-        setTitle("0", for: .normal)
         
         add(action: action)
     }

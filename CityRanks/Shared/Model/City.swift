@@ -15,6 +15,7 @@ struct City: Codable {
     var favorite: Bool = false
     var imageData: ImageResource! = nil
     var visitors: [User]? = nil
+    var rating: Double? = nil
 }
 
 extension City {
