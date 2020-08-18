@@ -8,7 +8,12 @@
 
 import Foundation
 
-protocol CityDetailsPresenterInputProtocol: class {
+protocol VisitorsViewDataSource {
+    var numberOfRows: Int { get }
+    func visitor(for indexPath: IndexPath) -> VisitorRenderable
+}
+
+protocol CityDetailsPresenterInputProtocol: class, VisitorsViewDataSource {
     func loadCityDetails()
     func loadCityImage()
 }
@@ -57,6 +62,18 @@ extension CityDetailsPresenter: CityDetailsPresenterOutputProtocol {
     
     func showAlert(from error: Error) {
         wireframe.presentAlert(from: error)
+    }
+    
+}
+
+extension CityDetailsPresenter: VisitorsViewDataSource {
+    
+    var numberOfRows: Int {
+        return city.visitors?.count ?? 0
+    }
+    
+    func visitor(for indexPath: IndexPath) -> VisitorRenderable {
+        return city.visitors![indexPath.row]
     }
     
 }

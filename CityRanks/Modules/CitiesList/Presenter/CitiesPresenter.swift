@@ -9,8 +9,8 @@
 import Foundation
 
 protocol CitiesViewDataSource {
-    func city(for indexPath: IndexPath) -> CityRenderable
     var numberOfRows: Int { get }
+    func city(for indexPath: IndexPath) -> CityRenderable
 }
 
 protocol CitiesPresenterInputProtocol: CitiesViewDataSource {

@@ -29,7 +29,9 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
     private lazy var cityImageView = CityImageView()
     
     private lazy var cityVisitorsButton = CityVisitorsButton {
-        print("Button tapped")
+        let visitorsView = VisitorsView()
+        visitorsView.presenter = self.presenter
+        self.present(visitorsView, animated: true)
     }
     
     private lazy var cityDetailsStack = CityDetailsStack(
@@ -61,8 +63,8 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
     
     func render(cityDetails: CityDetailsRenderable) {
         cityNameLabel.text = cityDetails.name
-        if let visitors = cityDetails.getVisitors() {
-            cityVisitorsButton.numberOfVisitors = visitors.count
+        if let numberOfVisitors = cityDetails.numberOfVisitors {
+            cityVisitorsButton.numberOfVisitors = numberOfVisitors
         }
         if let image = cityDetails.image {
             cityImageView.image = image

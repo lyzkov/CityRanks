@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32C0C8024EC8CCA00792696 /* VisitorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */; };
 		A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333176F24E93CDD006D67A0 /* UIImage+Placeholder.swift */; };
 		A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = A333177224E9404A006D67A0 /* ImageFetcher */; };
 		A333177524E940DB006D67A0 /* FakeImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333177424E940DB006D67A0 /* FakeImageFetcher.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsView.swift; sourceTree = "<group>"; };
 		A333176F24E93CDD006D67A0 /* UIImage+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Placeholder.swift"; sourceTree = "<group>"; };
 		A333177124E94041006D67A0 /* ImageFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ImageFetcher; sourceTree = "<group>"; };
 		A333177424E940DB006D67A0 /* FakeImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImageFetcher.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				A3B05D3224EBF004008854D9 /* CityNameLabel.swift */,
 				A3B05D3424EBF026008854D9 /* CityDetailsStack.swift */,
 				A3B05D3A24EC1F9A008854D9 /* CityVisitorsButton.swift */,
+				A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				A333178924E9E5A8006D67A0 /* FixturesLoader.swift in Sources */,
 				A37AA35524E15B860028D46A /* FakeCitiyRepository.swift in Sources */,
 				A335EEA624DAD06900D9B948 /* main.swift in Sources */,
+				A32C0C8024EC8CCA00792696 /* VisitorsView.swift in Sources */,
 				A3B05D3D24EC2655008854D9 /* UIButton+Closure.swift in Sources */,
 				A349E08C24E487F000F69499 /* CityRenderable.swift in Sources */,
 				A335EEB524DBE56400D9B948 /* CitiesView.swift in Sources */,

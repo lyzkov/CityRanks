@@ -12,13 +12,13 @@ import UIKit
 protocol CityDetailsRenderable {
     var name: String! { get }
     var image: UIImage? { get }
-    func getVisitors() -> [VisitorRenderable]?
+    var numberOfVisitors: Int? { get }
 }
 
 extension City: CityDetailsRenderable {
     
-    func getVisitors() -> [VisitorRenderable]? {
-        return visitors
+    var numberOfVisitors: Int? {
+        return visitors?.count
     }
     
 }
