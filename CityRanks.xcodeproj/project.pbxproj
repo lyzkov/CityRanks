@@ -37,7 +37,6 @@
 		A335EE9C24DACEB500D9B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A335EEA524DAD06900D9B948 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A335EEA724DAD0A000D9B948 /* FakeAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAppDelegate.swift; sourceTree = "<group>"; };
-		A387383924E6B37A002A1CF0 /* CityRanksAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CityRanksAPI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +63,6 @@
 			children = (
 				A335EE8224DACEB200D9B948 /* CityRanks */,
 				A335EE9924DACEB500D9B948 /* CityRanksTests */,
-				A387383924E6B37A002A1CF0 /* CityRanksAPI */,
 				A335EE8124DACEB200D9B948 /* Products */,
 				A387383A24E6B385002A1CF0 /* Frameworks */,
 			);
