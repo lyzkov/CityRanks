@@ -1,5 +1,5 @@
 //
-//  CityNameLabel.swift
+//  CityVisitorsButton.swift
 //  CityRanks
 //
 //  Created by lyzkov on 18/08/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class CityNameLabel: UILabel {
+final class CityVisitorsButton: UIButton {
     
     private enum Default {
         static let height: CGFloat = 60.0
@@ -17,13 +17,15 @@ final class CityNameLabel: UILabel {
     
     lazy var heightConstraint = heightAnchor.constraint(equalToConstant: Default.height)
     
-    init() {
+    init(action: @escaping () -> Void = {}) {
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        textAlignment = .center
-        textColor = .black
+        setTitleColor(.blue, for: .normal)
+        setTitle("0", for: .normal)
+        
+        add(action: action)
     }
     
     required init?(coder: NSCoder) {

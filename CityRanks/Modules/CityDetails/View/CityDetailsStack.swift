@@ -11,7 +11,7 @@ import UIKit
 
 final class CityDetailsStack: UIStackView {
     
-    init(cityImageView: CityImageView, cityNameLabel: CityNameLabel) {
+    init(cityImageView: CityImageView, cityNameLabel: CityNameLabel, cityVisitorsButton: CityVisitorsButton) {
         super.init(frame: .zero)
 
         translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +22,7 @@ final class CityDetailsStack: UIStackView {
         
         addArrangedSubview(cityImageView)
         addArrangedSubview(cityNameLabel)
+        addArrangedSubview(cityVisitorsButton)
     }
 
     required init(coder: NSCoder) {

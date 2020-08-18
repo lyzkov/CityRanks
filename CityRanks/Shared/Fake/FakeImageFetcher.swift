@@ -12,8 +12,8 @@ import ImageFetcher
 
 private let cityImages = [
     UIImage(named: "cracow")!,
+    UIImage(named: "warsaw")!,
     UIImage(named: "wroclaw")!,
-    UIImage(named: "warsaw")!
 ]
 
 final class FakeImageFetcher: ImageFetcherProtocol {

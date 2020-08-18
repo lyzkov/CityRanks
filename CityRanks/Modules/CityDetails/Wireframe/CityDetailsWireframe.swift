@@ -18,10 +18,16 @@ final class CityDetailsWireframe: CityDetailsWireframeProtocol {
     
     var view: UIViewController {
         let view = CityDetailsView()
-        let presenter = CityDetailsPresenter(wireframe: self, view: view)
+        let presenter = CityDetailsPresenter(wireframe: self, view: view, city: city)
         view.presenter = presenter
         
         return view
+    }
+    
+    let city: City
+    
+    init(city: City) {
+        self.city = city
     }
     
 }

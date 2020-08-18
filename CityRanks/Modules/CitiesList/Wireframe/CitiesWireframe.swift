@@ -33,7 +33,7 @@ final class CitiesWireframe: CitiesWireframeProtocol, WireframeProtocol {
     
     func presentDetails(for city: City) {
         guard let navigationController = root as? UINavigationController else { return }
-        CityDetailsWireframe().presentModule(from: navigationController)
+        CityDetailsWireframe(city: city).presentModule(from: navigationController)
     }
 
 }

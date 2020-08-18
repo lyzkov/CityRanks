@@ -9,21 +9,32 @@
 import Foundation
 
 protocol CityDetailsPresenterInputProtocol: class {
-    
+    func loadCityDetails()
 }
 
 protocol CityDetailsPresenterOutputProtocol {
     
 }
 
-final class CityDetailsPresenter: CityDetailsPresenterInputProtocol, CityDetailsPresenterOutputProtocol {
+final class CityDetailsPresenter: CityDetailsPresenterOutputProtocol {
     
     private let wireframe: CityDetailsWireframeProtocol
     private weak var view: CityDetailsViewProtocol!
     
-    init(wireframe: CityDetailsWireframeProtocol, view: CityDetailsViewProtocol) {
+    private var city: City
+    
+    init(wireframe: CityDetailsWireframeProtocol, view: CityDetailsViewProtocol, city: City) {
         self.wireframe = wireframe
         self.view = view
+        self.city = city
+    }
+    
+}
+
+extension CityDetailsPresenter: CityDetailsPresenterInputProtocol {
+    
+    func loadCityDetails() {
+        view.render(city: city)
     }
     
 }

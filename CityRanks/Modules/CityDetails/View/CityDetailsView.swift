@@ -11,7 +11,7 @@ import UIKit
 protocol CityDetailsViewProtocol: class {
     var presenter: CityDetailsPresenterInputProtocol! { get set }
     
-    func render(city: CityRenderable)
+    func render(city: CityDetailsRenderable)
 }
 
 final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
@@ -25,8 +25,18 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
     var presenter: CityDetailsPresenterInputProtocol!
     
     private lazy var cityNameLabel = CityNameLabel()
+    
     private lazy var cityImageView = CityImageView()
-    private lazy var cityDetailsStack = CityDetailsStack(cityImageView: cityImageView, cityNameLabel: cityNameLabel)
+    
+    private lazy var cityVisitorsButton = CityVisitorsButton {
+        print("Button tapped")
+    }
+    
+    private lazy var cityDetailsStack = CityDetailsStack(
+        cityImageView: cityImageView,
+        cityNameLabel: cityNameLabel,
+        cityVisitorsButton: cityVisitorsButton
+    )
     
     override func loadView() {
         super.loadView()
@@ -36,6 +46,12 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
         view.addSubview(cityDetailsStack)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        presenter.loadCityDetails()
+    }
+    
     private func configureView() {
         view.backgroundColor = Default.backgroundColor
         view.layoutMargins.top = Default.marginTop
@@ -43,7 +59,7 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
         view.layoutMargins.right = Default.marginHorizontal
     }
     
-    func render(city: CityRenderable) {
+    func render(city: CityDetailsRenderable) {
         cityNameLabel.text = city.name
         cityImageView.image = city.image
     }

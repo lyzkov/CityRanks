@@ -22,6 +22,7 @@ final class CityImageView: UIImageView {
         
         translatesAutoresizingMaskIntoConstraints = false
         
+        contentMode = .scaleAspectFit
         image = .placeholder
     }
     
