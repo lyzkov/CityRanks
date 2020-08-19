@@ -52,6 +52,8 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
         super.viewDidLoad()
         
         presenter.loadCityDetails()
+        
+        cityVisitorsButton.activityIndicatorView.startAnimating()
     }
     
     private func configureView() {
@@ -65,6 +67,7 @@ final class CityDetailsView: UIViewController, CityDetailsViewProtocol {
         cityNameLabel.text = cityDetails.name
         if let numberOfVisitors = cityDetails.numberOfVisitors {
             cityVisitorsButton.numberOfVisitors = numberOfVisitors
+            cityVisitorsButton.activityIndicatorView.stopAnimating()
         }
         if let image = cityDetails.image {
             cityImageView.image = image

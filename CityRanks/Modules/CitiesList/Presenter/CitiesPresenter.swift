@@ -108,6 +108,7 @@ extension CitiesPresenter: CitiesPresenterOutputProtocol {
     
     func showAlert(from error: Error) {
         wireframe.presentAlert(from: error)
+//        view.renderCitiesList()
     }
     
 }
