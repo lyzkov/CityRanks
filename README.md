@@ -19,14 +19,14 @@ Project is organized in modules that follows [VIPER](https://mutualmobile.com/re
 ### Required features
 
 - [x] Content should be backend driven. You can host one/more json file/s on gist.github.com or any other service and use it as the host of the data from your app (or any online REST alternative)
-- [ ] Use UINavigationController and UITableView/UICollectionView displaying list of items. Each cell should consist of backend driven image and title. After tapping, selected content should be shown on the details screen with more information. Aside from this, there should be at least one screen presented modally
+- [x] Use UINavigationController and UITableView/UICollectionView displaying list of items. Each cell should consist of backend driven image and title. After tapping, selected content should be shown on the details screen with more information. Aside from this, there should be at least one screen presented modally
 - [x] Possibility to mark the item as “favourite” and filter the list to show only favourite items.
 - [x] There should be mechanism to persist favourites between app launches. You don’t have
 to persist whole objects – implementation is up to you. You may use UserDefaults but
 make it scalable
-- [ ] Have a point of synchronization (e.g. making two concurrent network requests and
+- [x] Have a point of synchronization (e.g. making two concurrent network requests and
 waiting for both of them to finish)
-- [ ] Handle loading and error states
+- [x] Handle loading and error states
 
 ### Technical requirements
 
