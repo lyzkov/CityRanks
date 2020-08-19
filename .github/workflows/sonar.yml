@@ -7,6 +7,18 @@ on:
     branches: [ master, develop ]
 
 jobs:
+  code_coverage:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: XCCov
+        run: /Applications/Xcode_11.5.app/Contents/Developer/usr/bin/xcodebuild -project CityRanks.xcodeproj/ -scheme CityRanks -derivedDataPath Build/ -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - name: Generate report
+        run: bash xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/ > sonarqube-generic-coverage.xml
+      - uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: sonarqube-generic-coverage.xml
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
@@ -14,6 +26,9 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+    - uses: actions/download-artifact@v2
+      with:
+        name: coverage
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.3
       env:
