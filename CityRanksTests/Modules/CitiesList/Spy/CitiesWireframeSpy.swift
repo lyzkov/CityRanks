@@ -9,7 +9,9 @@
 import UIKit
 @testable import CityRanks
 
-final class WireframeSpy: WireframeProtocol {
+final class CitiesWireframeSpy: CitiesWireframeProtocol {
+    
+    var view: UIViewController = UIViewController()
     
     var root: UIViewController?
     
@@ -33,9 +35,15 @@ final class WireframeSpy: WireframeProtocol {
     
     var didPresentAlert = false
     var error: Error?
-    
+
     func presentAlert(from error: Error) {
         didPresentAlert = true
         self.error = error
+    }
+    
+    var didPresentDetailsForCity: City? = nil
+    
+    func presentDetails(for city: City) {
+        didPresentDetailsForCity = city
     }
 }

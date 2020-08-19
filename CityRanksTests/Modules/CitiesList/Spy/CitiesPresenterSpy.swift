@@ -61,4 +61,10 @@ final class CitiesPresenterSpy: CitiesPresenterInputProtocol, CitiesPresenterOut
         errorToShow = error
     }
     
+    var didShowDetailsIndexPath: IndexPath? = nil
+    
+    func showDetails(forRowAt indexPath: IndexPath) {
+        didShowDetailsIndexPath = indexPath
+    }
+    
 }

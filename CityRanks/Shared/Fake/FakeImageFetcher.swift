@@ -10,18 +10,13 @@ import Foundation
 import UIKit
 import ImageFetcher
 
-private let cityImages = [
-    UIImage(named: "cracow")!,
-    UIImage(named: "wroclaw")!,
-    UIImage(named: "warsaw")!
-]
-
 final class FakeImageFetcher: ImageFetcherProtocol {
     
-    var imageData: [UIImage]
+    var imageData: [String: UIImage]
     
-    init(imageData: [UIImage] = cityImages) {
-        self.imageData = imageData
+    init(fixtures: FixturesLoader<[String: String]> = .init()) {
+        let names = try? fixtures.load(resource: "ImageURLAssets")
+        self.imageData = names?.compactMapValues(UIImage.init(named:)) ?? [:]
     }
     
     func fetch(from url: URL, completion handler: @escaping (ImageResource) -> Void) {
@@ -38,7 +33,7 @@ final class FakeImageFetcher: ImageFetcherProtocol {
     
     func fetch(from url: URL, completion handler: @escaping (Result<Data, Error>) -> Void) {
         DispatchQueue.global().async { [weak self] in
-            guard let data = self?.imageData.popLast()?.jpegData(compressionQuality: 0.89) else {
+            guard let data = self?.imageData[url.absoluteString]?.jpegData(compressionQuality: 0.89) else {
                 DispatchQueue.main.async {
                     handler(.failure(NSError()))
                 }

@@ -11,7 +11,9 @@ import Foundation
 final class FixturesLoader<Target: Decodable> {
     
     func load(resource: String) throws -> Target {
-        guard let url = Bundle.main.url(forResource: resource, withExtension: "json") else { throw CocoaError(.fileNoSuchFile) }
+        guard let url = Bundle.main.url(forResource: resource, withExtension: "json") else {
+            throw CocoaError(.fileNoSuchFile)
+        }
         
         let jsonData = try Data(contentsOf: url)
         
