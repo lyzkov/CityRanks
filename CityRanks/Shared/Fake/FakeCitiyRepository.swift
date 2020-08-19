@@ -11,14 +11,14 @@ import Foundation
 /// TODO: Replace with actual implementation that fetches cities from API
 final class FakeCityRepository: CityRepositoryProtocol {
     
-    var cities: [City] = []
+    var cities: [City]
     
     var error: Error? = nil
     
     let fixtures = FixturesLoader<[CityFixture]>()
     
     init() {
-        cities = (try! fixtures.load(resource: "Cities").compactMap(City.init(from:)))
+        cities = (try? fixtures.load(resource: "Cities").compactMap(City.init(from:))) ?? []
     }
     
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {

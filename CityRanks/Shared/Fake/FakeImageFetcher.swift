@@ -12,11 +12,11 @@ import ImageFetcher
 
 final class FakeImageFetcher: ImageFetcherProtocol {
     
-    var imageData: [String: UIImage] = [:]
+    var imageData: [String: UIImage]
     
     init(fixtures: FixturesLoader<[String: String]> = .init()) {
-        let names = try! fixtures.load(resource: "ImageURLAssets")
-        self.imageData = names.compactMapValues(UIImage.init(named:))
+        let names = try? fixtures.load(resource: "ImageURLAssets")
+        self.imageData = names?.compactMapValues(UIImage.init(named:)) ?? [:]
     }
     
     func fetch(from url: URL, completion handler: @escaping (ImageResource) -> Void) {

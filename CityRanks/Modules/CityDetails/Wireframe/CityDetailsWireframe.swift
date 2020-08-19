@@ -17,13 +17,13 @@ final class CityDetailsWireframe: CityDetailsWireframeProtocol {
     weak var root: UIViewController?
     
     var view: UIViewController {
-        let view = CityDetailsView()
+        let cityDetailsView = CityDetailsView()
         let interactor = CityDetailsInteractor()
-        let presenter = CityDetailsPresenter(wireframe: self, view: view, interactor: interactor, city: city)
+        let presenter = CityDetailsPresenter(wireframe: self, view: cityDetailsView, interactor: interactor, city: city)
         interactor.presenter = presenter
-        view.presenter = presenter
+        cityDetailsView.presenter = presenter
         
-        return view
+        return cityDetailsView
     }
     
     let city: City

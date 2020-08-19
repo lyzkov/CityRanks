@@ -23,14 +23,16 @@ final class CityVisitorsButton: UIButton {
         }
     }
     
-    init(action: @escaping () -> Void = {}) {
+    init(action: (() -> Void)? = nil) {
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         
         setTitleColor(.blue, for: .normal)
         
-        add(action: action)
+        if let action = action {
+            add(action: action)
+        }
     }
     
     required init?(coder: NSCoder) {

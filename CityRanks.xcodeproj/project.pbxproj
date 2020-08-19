@@ -130,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A333177824E94182006D67A0 /* Storage in Frameworks */,
+				A3543F8324ED411E00D5C7E3 /* Storage in Frameworks */,
 				A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */,
 				A387384024E6B64D002A1CF0 /* CityRanksAPIClient in Frameworks */,
 			);
@@ -496,7 +496,7 @@
 			packageProductDependencies = (
 				A387383F24E6B64D002A1CF0 /* CityRanksAPIClient */,
 				A333177224E9404A006D67A0 /* ImageFetcher */,
-				A333177724E94182006D67A0 /* Storage */,
+				A3543F8224ED411E00D5C7E3 /* Storage */,
 			);
 			productName = CityRanks;
 			productReference = A335EE8024DACEB200D9B948 /* CityRanks.app */;
@@ -888,7 +888,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageFetcher;
 		};
-		A333177724E94182006D67A0 /* Storage */ = {
+		A3543F8224ED411E00D5C7E3 /* Storage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Storage;
 		};
