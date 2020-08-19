@@ -1,4 +1,4 @@
-# CityRanks 0.1.0
+# CityRanks 0.2.0
 
 ### Installation
 
