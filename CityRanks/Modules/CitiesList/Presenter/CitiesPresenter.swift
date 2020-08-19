@@ -9,8 +9,8 @@
 import Foundation
 
 protocol CitiesViewDataSource {
-    func city(for indexPath: IndexPath) -> CityRenderable
     var numberOfRows: Int { get }
+    func city(for indexPath: IndexPath) -> CityRenderable
 }
 
 protocol CitiesPresenterInputProtocol: CitiesViewDataSource {
@@ -18,6 +18,7 @@ protocol CitiesPresenterInputProtocol: CitiesViewDataSource {
     func loadCityImage(forRowAt indexPath: IndexPath)
     func filterCities(favorites: Bool)
     func toggleFavorite(forRowAt indexPath: IndexPath)
+    func showDetails(forRowAt indexPath: IndexPath)
 }
 
 protocol CitiesPresenterOutputProtocol: class {
@@ -32,13 +33,13 @@ final class CitiesPresenter {
     
     private let interactor: CitiesInteractorProtocol
     
-    private let wireframe: WireframeProtocol
+    private let wireframe: CitiesWireframeProtocol
     
     private var cities: [City] = []
     
     private var favoritesOnly: Bool = false
     
-    init(wireframe: WireframeProtocol, view: CitiesViewProtocol, interactor: CitiesInteractorProtocol) {
+    init(wireframe: CitiesWireframeProtocol, view: CitiesViewProtocol, interactor: CitiesInteractorProtocol) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
@@ -81,6 +82,11 @@ extension CitiesPresenter: CitiesPresenterInputProtocol {
         interactor.update(city: city)
     }
     
+    func showDetails(forRowAt indexPath: IndexPath) {
+        let city = cities[indexPath.item]
+        wireframe.presentDetails(for: city)
+    }
+    
 }
 
 extension CitiesPresenter: CitiesPresenterOutputProtocol {
@@ -102,6 +108,7 @@ extension CitiesPresenter: CitiesPresenterOutputProtocol {
     
     func showAlert(from error: Error) {
         wireframe.presentAlert(from: error)
+//        view.renderCitiesList()
     }
     
 }

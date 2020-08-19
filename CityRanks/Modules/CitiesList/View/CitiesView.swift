@@ -10,11 +10,19 @@ import UIKit
 
 protocol CitiesViewProtocol {
     var presenter: CitiesPresenterInputProtocol! { get set }
+    
     func renderCitiesList()
     func renderCityImage(forRowAt indexPath: IndexPath)
 }
 
 final class CitiesView: UITableViewController, CitiesViewProtocol {
+    
+    private enum Default {
+        static let cityCellId = "cityCell"
+        static let favoriteIcon = "💛"
+        static let favSwitchTitle = "Fav"
+        static let title = "Cities Rank"
+    }
     
     // MARK: - Dependencies
     
@@ -23,10 +31,8 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
     // MARK: - Subviews
     
     var favoriteIcon: UIImageView {
-        UIImageView(image: "💛".image())
+        UIImageView(image: Default.favoriteIcon.image())
     }
-    
-    // MARK: - Properties
     
     // MARK: - Life cycle
     
@@ -34,18 +40,20 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
         super.viewDidLoad()
         
         // Navigation Bar setup
-        title = "Cities Rank"
+        title = Default.title
         
         let favoritesLabel = UILabel()
-        favoritesLabel.text = "Fav"
+        favoritesLabel.text = Default.favSwitchTitle
         let favoritesSwitch = UISwitch()
         favoritesSwitch.addTarget(self, action: #selector(favoriteDidChange), for: .valueChanged)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: favoritesSwitch), UIBarButtonItem(customView: favoritesLabel)]
         
         // Table View setup
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cityCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Default.cityCellId)
         
         tableView.prefetchDataSource = self
+        tableView.activityIndicatorView.style = .whiteLarge
+        tableView.activityIndicatorView.startAnimating()
         
         // Data feed
         presenter?.loadCities()
@@ -59,6 +67,7 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
     
     func renderCitiesList() {
         tableView.reloadData()
+        tableView.activityIndicatorView.stopAnimating()
     }
     
     func renderCityImage(forRowAt indexPath: IndexPath) {
@@ -81,9 +90,15 @@ extension CitiesView {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let city = presenter.city(for: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Default.cityCellId, for: indexPath)
         cell.textLabel?.text = city.name
-        cell.imageView?.image = city.image ?? .placeholder
+        if let image = city.image {
+            cell.imageView?.activityIndicatorView.stopAnimating()
+            cell.imageView?.image = image
+        } else {
+            cell.imageView?.activityIndicatorView.startAnimating()
+            cell.imageView?.image = .placeholder
+        }
         cell.accessoryView = city.favorite ? favoriteIcon : nil
         
         return cell
@@ -97,11 +112,15 @@ extension CitiesView {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
-            .init(style: .normal, title: "Favorite", handler: { action, view, success in
+            .init(style: .normal, title: Default.favoriteIcon, handler: { action, view, success in
                 self.presenter.toggleFavorite(forRowAt: indexPath)
                 success(true)
             })
         ])
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.showDetails(forRowAt: indexPath)
     }
     
 }

@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import CityRanksAPIClient
 
 final class FakeCityRepository: CityRepositoryProtocol {
     
-    var cities: [City] = []
+    var cities: [City]
     
     var error: Error? = nil
     
-    let fixtures = FixturesLoader<[CityRanksAPIClient.City]>()
+    let fixtures = FixturesLoader<[CityFixture]>()
     
     init() {
-        cities = (try? fixtures.load(resource: "CitiesList").compactMap(City.init(from:))) ?? []
+        cities = (try? fixtures.load(resource: "Cities").compactMap(City.init(from:))) ?? []
     }
     
     func fetchCities(completion handler: (Result<[City], Error>) -> Void) {
@@ -26,6 +25,14 @@ final class FakeCityRepository: CityRepositoryProtocol {
             handler(.failure(error))
         } else {
             handler(.success(cities))
+        }
+    }
+    
+    func fetchDetails(for city: City, completion handler: @escaping (Result<City, Error>) -> Void) {
+        if let error = error {
+            handler(.failure(error))
+        } else if let index = cities.firstIndex(of: city) {
+            handler(.success(cities[index]))
         }
     }
     

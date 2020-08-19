@@ -13,7 +13,7 @@ final class CitiesPresenterTests: XCTestCase {
     
     private var view: CitiesViewSpy!
     private var interactor: CitiesInteractorSpy!
-    private var wireframe: WireframeSpy!
+    private var wireframe: CitiesWireframeSpy!
     private var presenter: CitiesPresenter!
 
     override func setUpWithError() throws {
@@ -21,7 +21,7 @@ final class CitiesPresenterTests: XCTestCase {
         
         view = CitiesViewSpy()
         interactor = CitiesInteractorSpy()
-        wireframe = WireframeSpy()
+        wireframe = CitiesWireframeSpy()
         presenter = CitiesPresenter(wireframe: wireframe, view: view, interactor: interactor)
         interactor.presenter = presenter
     }
@@ -96,6 +96,17 @@ final class CitiesPresenterTests: XCTestCase {
         
         XCTAssertTrue(wireframe.didPresentAlert)
         XCTAssertTrue(wireframe.error as AnyObject? === error as AnyObject)
+    }
+    
+    func testShowDetails_presentsDetails() {
+        let cities = [City].polish
+        interactor.citiesToPresent = cities
+        let indexPath = IndexPath(item: 1, section: 0)
+        
+        presenter.loadCities()
+        presenter.showDetails(forRowAt: indexPath)
+        
+        XCTAssertEqual(wireframe.didPresentDetailsForCity, cities[indexPath.row])
     }
 
 }
