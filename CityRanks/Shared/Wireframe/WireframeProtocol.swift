@@ -38,6 +38,7 @@ extension WireframeProtocol {
             message: error.localizedDescription,
             preferredStyle: .alert
         )
+        alert.addAction(.init(title: "OK", style: .default))
         root?.present(alert, animated: true)
     }
     
