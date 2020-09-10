@@ -11,6 +11,7 @@
 		A307C810250977A300CAA0D3 /* CityItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307C80F250977A300CAA0D3 /* CityItemList.swift */; };
 		A307C8122509945D00CAA0D3 /* CityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307C8112509945D00CAA0D3 /* CityDetails.swift */; };
 		A307C8152509998400CAA0D3 /* SwipeCell in Frameworks */ = {isa = PBXBuildFile; productRef = A307C8142509998400CAA0D3 /* SwipeCell */; };
+		A307C8182509A82D00CAA0D3 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = A307C8172509A82D00CAA0D3 /* SFSafeSymbols */; };
 		A32C0C8024EC8CCA00792696 /* VisitorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */; };
 		A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333176F24E93CDD006D67A0 /* UIImage+Placeholder.swift */; };
 		A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = A333177224E9404A006D67A0 /* ImageFetcher */; };
@@ -141,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A307C8182509A82D00CAA0D3 /* SFSafeSymbols in Frameworks */,
 				A3543F8524ED4A5C00D5C7E3 /* Storage in Frameworks */,
 				A307C8152509998400CAA0D3 /* SwipeCell in Frameworks */,
 				A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */,
@@ -523,6 +525,7 @@
 				A333177224E9404A006D67A0 /* ImageFetcher */,
 				A3543F8224ED411E00D5C7E3 /* Storage */,
 				A307C8142509998400CAA0D3 /* SwipeCell */,
+				A307C8172509A82D00CAA0D3 /* SFSafeSymbols */,
 			);
 			productName = CityRanks;
 			productReference = A335EE8024DACEB200D9B948 /* CityRanks.app */;
@@ -576,6 +579,7 @@
 			mainGroup = A335EE7724DACEB200D9B948;
 			packageReferences = (
 				A307C8132509998400CAA0D3 /* XCRemoteSwiftPackageReference "SwipeCell" */,
+				A307C8162509A82D00CAA0D3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = A335EE8124DACEB200D9B948 /* Products */;
 			projectDirPath = "";
@@ -932,6 +936,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		A307C8162509A82D00CAA0D3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/piknotech/SFSafeSymbols.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -939,6 +951,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A307C8132509998400CAA0D3 /* XCRemoteSwiftPackageReference "SwipeCell" */;
 			productName = SwipeCell;
+		};
+		A307C8172509A82D00CAA0D3 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A307C8162509A82D00CAA0D3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 		A333177224E9404A006D67A0 /* ImageFetcher */ = {
 			isa = XCSwiftPackageProductDependency;

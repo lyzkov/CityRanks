@@ -12,7 +12,7 @@ struct CityItem: View {
     
     var body: some View {
         HStack(spacing: 8.0) {
-            Image(systemName: "shift.fill")
+            Image(systemSymbol: .shiftFill)
             Text("Hello world!")
             Spacer()
             Text("💛")

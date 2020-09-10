@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct CityDetails: View {
     
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "shift.fill")
+                Image(systemSymbol: .shiftFill)
                 Text("Hello world!")
             }
         }
