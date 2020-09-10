@@ -22,6 +22,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func installRootViewController() {
         let rootNavigation = UINavigationController()
+        rootNavigation.navigationBar.isHidden = true
         CitiesWireframe().presentModule(from: rootNavigation)
         
         window?.rootViewController = rootNavigation

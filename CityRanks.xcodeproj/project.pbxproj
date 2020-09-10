@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A307C80E2509776E00CAA0D3 /* CityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307C80D2509776E00CAA0D3 /* CityItem.swift */; };
+		A307C810250977A300CAA0D3 /* CityItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307C80F250977A300CAA0D3 /* CityItemList.swift */; };
+		A307C8122509945D00CAA0D3 /* CityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307C8112509945D00CAA0D3 /* CityDetails.swift */; };
+		A307C8152509998400CAA0D3 /* SwipeCell in Frameworks */ = {isa = PBXBuildFile; productRef = A307C8142509998400CAA0D3 /* SwipeCell */; };
 		A32C0C8024EC8CCA00792696 /* VisitorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */; };
 		A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333176F24E93CDD006D67A0 /* UIImage+Placeholder.swift */; };
 		A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = A333177224E9404A006D67A0 /* ImageFetcher */; };
@@ -72,6 +76,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A307C80D2509776E00CAA0D3 /* CityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityItem.swift; sourceTree = "<group>"; };
+		A307C80F250977A300CAA0D3 /* CityItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityItemList.swift; sourceTree = "<group>"; };
+		A307C8112509945D00CAA0D3 /* CityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetails.swift; sourceTree = "<group>"; };
 		A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsView.swift; sourceTree = "<group>"; };
 		A333176F24E93CDD006D67A0 /* UIImage+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Placeholder.swift"; sourceTree = "<group>"; };
 		A333177124E94041006D67A0 /* ImageFetcher */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ImageFetcher; sourceTree = "<group>"; };
@@ -135,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3543F8524ED4A5C00D5C7E3 /* Storage in Frameworks */,
+				A307C8152509998400CAA0D3 /* SwipeCell in Frameworks */,
 				A333177324E9404A006D67A0 /* ImageFetcher in Frameworks */,
 				A387384024E6B64D002A1CF0 /* CityRanksAPIClient in Frameworks */,
 			);
@@ -304,6 +312,8 @@
 			children = (
 				A3B05D4124EC30B0008854D9 /* Renderable */,
 				A335EEB424DBE56400D9B948 /* CitiesView.swift */,
+				A307C80D2509776E00CAA0D3 /* CityItem.swift */,
+				A307C80F250977A300CAA0D3 /* CityItemList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -462,6 +472,7 @@
 				A3B05D3424EBF026008854D9 /* CityDetailsStack.swift */,
 				A3B05D3A24EC1F9A008854D9 /* CityVisitorsButton.swift */,
 				A32C0C7F24EC8CCA00792696 /* VisitorsView.swift */,
+				A307C8112509945D00CAA0D3 /* CityDetails.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -511,6 +522,7 @@
 				A387383F24E6B64D002A1CF0 /* CityRanksAPIClient */,
 				A333177224E9404A006D67A0 /* ImageFetcher */,
 				A3543F8224ED411E00D5C7E3 /* Storage */,
+				A307C8142509998400CAA0D3 /* SwipeCell */,
 			);
 			productName = CityRanks;
 			productReference = A335EE8024DACEB200D9B948 /* CityRanks.app */;
@@ -541,7 +553,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = lyzkov;
 				TargetAttributes = {
 					A335EE7F24DACEB200D9B948 = {
@@ -562,6 +574,9 @@
 				Base,
 			);
 			mainGroup = A335EE7724DACEB200D9B948;
+			packageReferences = (
+				A307C8132509998400CAA0D3 /* XCRemoteSwiftPackageReference "SwipeCell" */,
+			);
 			productRefGroup = A335EE8124DACEB200D9B948 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -607,8 +622,10 @@
 				A3B05D2724EAC4F6008854D9 /* WireframeProtocol.swift in Sources */,
 				A335EEB724DBE74700D9B948 /* CitiesPresenter.swift in Sources */,
 				A333178324E99BF0006D67A0 /* CityRepository.swift in Sources */,
+				A307C80E2509776E00CAA0D3 /* CityItem.swift in Sources */,
 				A3B05D3924EC1EC5008854D9 /* User.swift in Sources */,
 				A335EE8424DACEB200D9B948 /* AppDelegate.swift in Sources */,
+				A307C810250977A300CAA0D3 /* CityItemList.swift in Sources */,
 				A3B05D2524EAC4C6008854D9 /* CityDetailsWireframe.swift in Sources */,
 				A3543F8724ED51BD00D5C7E3 /* UIView+ActivityIndicator.swift in Sources */,
 				A335EEC124DC0F4300D9B948 /* City.swift in Sources */,
@@ -627,6 +644,7 @@
 				A333178024E99B30006D67A0 /* CityStorage.swift in Sources */,
 				A3B05D2B24EAC5B2008854D9 /* CityDetailsPresenter.swift in Sources */,
 				A335EEC424DC121A00D9B948 /* URL+ExpressibleByStringLiteral.swift in Sources */,
+				A307C8122509945D00CAA0D3 /* CityDetails.swift in Sources */,
 				A3B05D3324EBF004008854D9 /* CityNameLabel.swift in Sources */,
 				A3B05D3F24EC301C008854D9 /* VisitorRenderable.swift in Sources */,
 				A333177024E93CDD006D67A0 /* UIImage+Placeholder.swift in Sources */,
@@ -701,6 +719,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -725,7 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -761,6 +780,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -779,7 +799,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -795,6 +815,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = WPZC96H3B4;
 				INFOPLIST_FILE = CityRanks/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -814,6 +835,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = WPZC96H3B4;
 				INFOPLIST_FILE = CityRanks/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -901,7 +923,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		A307C8132509998400CAA0D3 /* XCRemoteSwiftPackageReference "SwipeCell" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fatbobman/SwipeCell.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		A307C8142509998400CAA0D3 /* SwipeCell */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A307C8132509998400CAA0D3 /* XCRemoteSwiftPackageReference "SwipeCell" */;
+			productName = SwipeCell;
+		};
 		A333177224E9404A006D67A0 /* ImageFetcher */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageFetcher;

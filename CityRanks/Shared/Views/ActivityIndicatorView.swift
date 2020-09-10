@@ -16,7 +16,7 @@ final class ActivityIndicatorView: UIActivityIndicatorView {
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        style = .gray
+        style = .medium
         color = .gray
         hidesWhenStopped = true
     }

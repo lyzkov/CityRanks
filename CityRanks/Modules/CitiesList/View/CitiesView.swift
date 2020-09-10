@@ -52,7 +52,7 @@ final class CitiesView: UITableViewController, CitiesViewProtocol {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Default.cityCellId)
         
         tableView.prefetchDataSource = self
-        tableView.activityIndicatorView.style = .whiteLarge
+        tableView.activityIndicatorView.style = .large
         tableView.activityIndicatorView.startAnimating()
         
         // Data feed
